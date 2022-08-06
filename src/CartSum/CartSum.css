@@ -1,0 +1,24 @@
+.cart-items-sum {
+    overflow-y: scroll;
+    height:25%;
+}
+
+.cart-items-sum .cart-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    height: 225px;
+    margin: 0 .5rem;
+    gap: .5rem;
+    background: #ffffff;
+    color: rgb(34, 34, 34);
+    font-size: 1rem;
+    
+}
+.cart-items-sum .sub-info {
+    width:100%;
+    gap:1rem;
+}
+.cart-items-sum h3 {
+    text-align: left;
+}

@@ -1,0 +1,34 @@
+    .pay.header {
+    display: block;
+    color: black;
+    margin: 1.5rem 4.5rem;
+    text-align: left;
+     }
+     .pay-form{
+        height:75%;
+     }
+     .pay-dropdowns {
+        display:flex;
+        gap:1rem;
+     }
+     
+    .pay-dropdowns .hidden {
+        visibility: hidden;
+        width:0;
+        height:0;
+     }
+     .payment .cvv {
+        width:100px;
+     }
+     .selector .dropdowns {
+        /* width: 150px; */
+     }
+     .btn.pay-total {
+        width:250px;
+        display: block;
+        margin-left:200px;
+     }
+     .btn.clear.sm-text{
+        font-size: 1rem;
+     }
+     

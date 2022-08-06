@@ -1,0 +1,38 @@
+.login {
+    background: #ffffff;
+    color:#363636;
+    width: 600px;
+    border-radius: 10px;
+    padding: 2rem 5rem;
+
+}
+.toggle {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap:1rem;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+.toggle input {
+    height:20px;
+    border: 1px solid #999999;
+    width: 20px;
+    color: aqua;
+}
+input[type='radio']:checked:before {
+    background: red;
+}
+.or {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.line {
+    height:2px;
+    width:100%;
+    background:#6d6d6d;
+}
+.or p {
+    margin:0 1rem;
+}

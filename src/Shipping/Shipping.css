@@ -1,0 +1,135 @@
+.inputs input {
+    margin-bottom: 0;
+}
+.inputs {
+    margin-bottom: 1rem;
+    /* width:300px; */
+ } 
+input {
+    width: 100%;
+    height: 35px;
+    border: 1px solid #999999;
+    padding-left: 1rem;
+}
+label {
+    display: block;
+    width: 200px;
+    text-align: center;
+    font-size: 1rem;
+    text-align: left;
+}
+.code {
+    width:100px;
+}
+.shipping .inputs .zip {
+    width:90px;
+}
+.selector {
+    margin-bottom: 1rem; 
+ } 
+ .selector select {
+    width: 100px;
+    font-size: 1rem;
+ }
+ .ship-dropdowns .inputs .zip {
+    width:50%
+ }
+ .ship-dropdowns .inputs .zip-label{
+    width:293px;
+ }
+ .ship-dropdowns .dropdowns {
+    width:60%;
+ }
+ .ship-dropdowns .drop-label {
+    width: 119px;
+    text-align: right;
+    padding-right: 1rem;
+ }
+ .form-temp {
+    padding:1rem;
+    color:rgb(37, 37, 37);
+    font-weight: 700;
+}
+.form-temp .inputs label {
+    width:200px;
+}
+.form-temp .name-inputs {
+    width: 400px;
+}
+.ship-dropdowns{
+    display:flex;
+    align-items: center;
+    gap:1rem;
+    margin-bottom: 1rem;
+}
+.ship-dropdowns .selector {
+    width:100%;
+    display: flex;
+}
+.form-temp .address-inputs {
+    width:500px
+}
+.form-temp .inputs label.none {
+    width:0;
+}
+.phone-input {
+    display:flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.form-temp .inputs {
+    display:flex;
+    align-items: center;
+    justify-content: left;
+}
+.area-code{
+    display: flex;
+}
+.form-temp .inputs input.country-code{
+    width:30px;
+    text-align: center;
+    padding-left: 0;
+    border-right: none;
+}
+.form-temp .inputs input.phone-num-input{
+    width:100px;
+    margin-left: 1rem;
+}
+.area-code .area {
+    width:60px;
+
+}
+.ship {
+    width: 200px;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+.ship .ship-radio {
+    height: 20px;
+}
+.ship label {
+    color: black;
+    font-weight: 600;
+}
+.ship-info {
+    color:rgb(110, 110, 110);
+    font-size: 1rem;
+}
+.flex-wrapper {
+    display:flex;
+    width:100%;
+    gap:3rem;
+}
+ div .btn.clear {
+    background-color: transparent;
+    color: black;
+    border: 3px solid black;
+    width: 200px;
+    border-radius: 4px;
+    display: block;
+    margin: 1rem;
+}
+.back-button .btn.clear{
+    position: absolute;
+    bottom:0;
+}
