@@ -9,13 +9,13 @@
      }
      .pay-dropdowns {
         display:flex;
-        gap:1rem;
      }
      
     .pay-dropdowns .hidden {
         visibility: hidden;
         width:0;
         height:0;
+        position: absolute;
      }
      .payment .cvv {
         width:100px;

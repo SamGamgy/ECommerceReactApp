@@ -1,3 +1,6 @@
+.inputs {
+    position: relative;
+}
 .inputs label {
     display:block;
     width:100%;
@@ -15,13 +18,12 @@
 .selector {
     position: relative;
     display: flex;
-    width: 25rem;
+    width: 6rem;
     height: 3rem;
     align-items: center;
     justify-content: right;
-    overflow: hidden;
 }
-.selector select {
+.pay-dropdowns .selector select.dropdowns {
     outline: 0;
     background: rgb(212, 212, 212);
     background-image: none;
@@ -34,4 +36,29 @@
     font-size: 0.9rem;
     font-weight: 300;
     border-radius: 3px;
+}
+.error {
+    color: rgb(218, 16, 16);
+    font-size: 1rem;
+    margin-left:1rem;
+}
+.error.selectErr {
+    position:absolute;
+    left: 100px;
+    top: 15px;
+    width: 200%;
+}
+.passwordBtn {
+    border:none;
+    background-color: white;
+    position:absolute;
+    bottom:3px;
+    right:10px;
+}
+.passwordBtn svg {
+    font-size: 1.5rem;
+}
+.passwordBtn:hover {
+    opacity:0.75;
+    cursor: pointer;
 }

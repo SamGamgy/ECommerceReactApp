@@ -2,30 +2,47 @@ import React from 'react'
 import './CartItem.css'
 import {ImCross} from 'react-icons/im'
 import Dropdown from '../Dropdown/Dropdown'
-import {dress, plain, hat, shirt}
-from '../data'
+import cartItems from '../data'
 
 class CartItem extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state= {
-            quantity:0,
+            quantity:1,
+            display:true,
+            itemPrice: this.props.price,
 
         }
     }
 
     handleChange = (e) => {
         this.setState({quantity: e.target.value})
+
+        this.setState({itemPrice: (this.props.price * e.target.value).toFixed(2)}) 
+
+        let index = this.props.index 
+        // this.props.itemPrice((this.props.price * e.target.value).toFixed(2), index)
+        this.props.itemPrice(e.target.value, index)
     }
 
-    removeItem = (e) => {
-        let target = e.target
-        let parent = target.parentElement
+    // updateCart = () => {
+
+    //     this.props.itemPrice((this.state.itemPrice).toFixed(2))
+    // }
+
+    removeItem = () => {
+        let index = this.props.index
+        this.setState({display:false,})
+        this.props.display(false, index)
     }
     render() {
-        
+
+        let totalPrice = (this.props.price * this.state.quantity).toFixed(2)
+
+
         let optionArray= [1, 2, 3, 4, 5, 6, 7, 8, 9];
         return(
+            this.state.display &&
                 <div className='cart-item'>
                     <div className='remove-icon circle' onClick={this.removeItem}>
                         <ImCross/>
@@ -47,15 +64,18 @@ class CartItem extends React.Component {
                     </div>
                     <div className='attribute'>${this.props.price.toFixed(2)}</div>
                     <div className='quantity'>
-                        <Dropdown array={optionArray} placeholder='1' onChange={this.handleChange}/>
+                        <Dropdown 
+                            array={optionArray} 
+                            placeholder='1' 
+                            onChange={this.handleChange}
+                        />
                     </div>
-                    <div className='attribute'>${this.props.price.toFixed(2)}</div>
+                    <div className='attribute'>${totalPrice}</div>
 
                 </div>
-
+            )
+        }
             
-        )
-    }
 } 
 
 export default CartItem

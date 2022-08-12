@@ -3,12 +3,14 @@
     grid-template-columns: .5fr 1fr 3fr 1fr 1fr 1fr;
     align-items: center;
     height: 225px;
-    margin: 0 4.5rem;
+    padding: 0 4.5rem;
     gap: 2rem;
     background: #ffffff;
     color: rgb(34, 34, 34);
     font-size: 1.5rem;
-    
+}
+.cart-item:nth-child(odd) {
+    background: #e4e3e3;
 }
 .cart-item .remove-icon.circle {
     background: gray;
@@ -42,6 +44,8 @@
 .item-img img {
     width:100%;
     border-radius: 5px;
+    max-width: 125px;
+    min-width: 70px;
 }
 .sub-info {
     display: flex;

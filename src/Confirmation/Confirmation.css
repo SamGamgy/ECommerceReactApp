@@ -1,0 +1,24 @@
+.confirm-content {
+    margin: 6rem 4rem;
+}
+.icon-wrapper svg{
+    font-size: 8rem;
+    color: darkred;
+}
+.confirm-content h3 {
+    color: rgb(37, 37, 37);
+}
+.confirm-content p {
+    color: rgb(173, 173, 173);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+.confirm-content .btn {
+    width:275px;
+}
+.bw{
+    color:black;
+    background: white;
+    border: 4px solid black;
+}

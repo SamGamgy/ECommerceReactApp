@@ -26,6 +26,7 @@ label {
 }
 .selector {
     margin-bottom: 1rem; 
+    margin-right:2rem;
  } 
  .selector select {
     width: 100px;

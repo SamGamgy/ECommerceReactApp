@@ -14,7 +14,9 @@ class CartSum extends React.Component {
     render () {
         return(
             <div className='cart-items-sum'>
-                {cartItems.map((item) => (
+                {cartItems.map((item) => 
+                    item.inCart &&
+                (
                 <div className='cart-item'>
                     
                     <div className='item-img'>

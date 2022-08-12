@@ -1,16 +1,26 @@
 import React from "react";
 import './FormElement.css'
+import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai'
 
 class FormElement extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            passwordHide:true,
 
         } 
 
         
     }
 
+    passwordToggle = (e) => {
+        e.preventDefault();
+        if (this.state.passwordHide === true) {
+            this.setState({passwordHide:false})
+        } else {this.setState({passwordHide:true})}
+        
+    }
+    
     render () {
         if (this.props.type === 'input'){
             
@@ -26,6 +36,12 @@ class FormElement extends React.Component {
                     onBlur={this.props.onBlur}
                     onChange={this.props.onChange}
                 />
+                {this.props.passwordHide && 
+                (this.state.passwordHide ? 
+                <button className='passwordBtn' onClick={this.passwordToggle}> <AiFillEyeInvisible/> </button> : 
+                <button className='passwordBtn' onClick={this.passwordToggle}> <AiFillEye/> </button>)}
+
+                {this.props.errorM && <div className="error">{this.props.errorM}</div>}
             </div>
             )
         }
@@ -37,6 +53,7 @@ class FormElement extends React.Component {
                 <select 
                     className={this.props.className}
                     onChange={this.props.onChange} 
+                    onBlur={this.props.onBlur}
                     name={this.props.name} 
                     id="">
 
@@ -53,6 +70,7 @@ class FormElement extends React.Component {
                     ))})
                             
                 </select>
+                {this.props.errorM && <div className="error selectErr">{this.props.errorM}</div>}
             </div>
             )
             

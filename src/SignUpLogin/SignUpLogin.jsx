@@ -44,8 +44,8 @@ class SignUpLogin extends React.Component {
         const {formValues, signInValues} = this.state;
         let formData = [
             {key: 'Up1', label: 'Your Email Address*', name: 'email', type: 'input', maxLength: 'none'},
-            {key: 'Up2', label: 'Create Password*', name: 'pass1', type: 'input', maxLength: 20},
-            {key: 'Up3',label: 'Confirm Password*', name: 'pass2', type: 'input', maxLength: 20},
+            {key: 'Up2', label: 'Create Password*', name: 'pass1', type: 'input', maxLength: 20, password: true},
+            {key: 'Up3',label: 'Confirm Password*', name: 'pass2', type: 'input', maxLength: 20, password: true},
             {key: 'Up4',label: 'First Name*', name: 'firstName', type: 'input', maxLength: 'none'},
             {key: 'Up5',label: 'Last Name*', name: 'lastName', type: 'input', maxLength: 'none'},
             {key: 'Up6',label: 'Zip Code', name: 'zip', type: 'input', maxLength: 5},
@@ -53,7 +53,7 @@ class SignUpLogin extends React.Component {
 
         let signInData = [
             {key: 'In1', label: 'Enter your Email Address*', name: 'emailLogIn', type: 'input', maxLength: 'none'},
-            {key: 'In2', label: 'Enter your Password*', name: 'passwordLogIn', type: 'input', maxLength: 20},
+            {key: 'In2', label: 'Enter your Password*', name: 'passwordLogIn', type: 'input', maxLength: 20, password: true},
         ]
         let fbBanner= <FaFacebookF/> 
 
@@ -87,10 +87,11 @@ class SignUpLogin extends React.Component {
                             maxLength={item.maxLength}
                             onChange={this.handleFormInput}
                             // onBlur={}
+                            passwordHide={item.password}
                             />
                         ))}
                         <Button  
-                            onClick= {this.nextPage}
+                            onClick= {this.saveData}
                             className='btn' 
                             name='Save' />
                         <div className='or'>
@@ -138,6 +139,7 @@ class SignUpLogin extends React.Component {
                             maxLength={item.maxLength}
                             onChange={this.handleLogInInput}
                             // onBlur={}
+                            passwordHide={item.password}
                             />
                         ))}
                         <Button 
