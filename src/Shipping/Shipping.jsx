@@ -9,152 +9,104 @@ class Shipping extends React.Component {
         super(props)
         this.state= {
             shipping:'',
-
-
+            inputsMissing:true,
+            errorsPresent:true,
+            formValues:{
+                title:'',
+                surName:'',
+                address:'',
+                zip:'',
+                country:'',
+                city:'',
+                state:'',
+                cellCountryCode:'',
+                cellAreaCode:'',
+                cellNumber:'',
+                teleNumber:'',
+                teleAreaCode:'',
+                teleCountryCode:'',
+                shippingType:'',
+            },
+            error: {}
         }
     }
     captureShipping = (e) => {
-        this.setState({shipping: e.target.value})
+        this.setState((prevState) => ({formValues: {...prevState.formValues, shippingType:e.target.value}}), this.checkErr())
         this.props.shippingType(e.target.value)
     }
 
     handleChange = (e) => {
-        let state= e.target.name
-        this.setState({[state]: e.target.value})
+        if (e.target.name === 'cellCountryCode' || e.target.name ==='teleCountryCode') {
+            const limit = 1;
+            this.setState((prevState) => ({formValues: {...prevState.formValues, [e.target.name]:e.target.value.slice(0, limit)}}))
+            this.props.values(e.target.name, e.target.value)
+        }
+        else if (e.target.name === 'cellAreaCode' || e.target.name ==='teleAreaCode') {
+            const limit = 3;
+            this.setState((prevState) => ({formValues: {...prevState.formValues, [e.target.name]:e.target.value.slice(0, limit)}}))
+            this.props.values(e.target.name, e.target.value)
+        }
+        else if (e.target.name === 'cellNumber' || e.target.name ==='teleNumber') {
+            const limit = 7;
+            this.setState((prevState) => ({formValues: {...prevState.formValues, [e.target.name]:e.target.value.slice(0, limit)}}))
+            this.props.values(e.target.name, e.target.value)
+        }
+        else{
+            this.setState((prevState) => ({formValues: {...prevState.formValues, [e.target.name]:e.target.value}}))
 
-        this.props.values(e.target.name, e.target.value)
+            this.props.values(e.target.name, e.target.value)
+        }
+       this.checkErr()
+    }
+    checkErr = () => {
+        let inputsMissing=false
+        console.log('checkErr Ran')
+        console.log(this.state.formValues)
+        Object.keys(this.state.formValues).forEach((val) => {
+            if (this.state.formValues[val].length === 0) {
+                inputsMissing = true
+            } 
+        });
+        console.log(this.state.formValues)
+        this.setState({errorsPresent:inputsMissing}, this.passProp(inputsMissing))
+        
+       
+    }
+    passProp =(boolean) => {
+        this.props.isFormFilled(boolean)
     }
     handleRender = () => {
         this.props.ship('shipScreen', 'cartScreen')
     }
-    render() {
-        
 
+    checkForValue = (e) => {
+        if( e.target.name === 'cellAreaCode' || e.target.name === 'cellCountryCode') {
+            if (!e.target.value.length > 0) {
+                this.setState((prevState) => ({error: {...prevState.error, cellNumber:'Required'}}))
+        } else {
+            this.setState((prevState) => ({error: {...prevState.error, [e.target.name]:''}}))
+        } 
+    }
+        else if( e.target.name === 'teleAreaCode' || e.target.name === 'teleCountryCode') {
+            if (!e.target.value.length > 0) {
+                this.setState((prevState) => ({error: {...prevState.error, teleNumber:'Required'}}))
+        } else {
+            this.setState((prevState) => ({error: {...prevState.error, [e.target.name]:''}}))
+        } 
+    }
+        else if (!e.target.value.length > 0) {
+            this.setState((prevState) => ({error: {...prevState.error, [e.target.name]:'Required'}}))
+        } else {
+            this.setState((prevState) => ({error: {...prevState.error, [e.target.name]:''}}))
+        }
+        
+        this.checkErr()
+    }
+
+    render() {
         return(
             <div className='container main'>
                 <div className= 'header'>
-                    <div className='titles'>Shipping Information</div>
-                </div>
-                    <form className='form-temp'>
-                        <FormElement 
-                            className="name-inputs"
-                            type='input' 
-                            label='Address Title'
-                            value={this.props.shipping.title}
-                            name='title'
-                            onChange={this.handleChange}
-                        />
-                        <FormElement 
-                            className="name-inputs"
-                            type='input' 
-                            label='Name - Surname'
-                            value={this.props.shipping.name}
-                            name='name'
-                            onChange={this.handleChange}
-                        />
-                        <FormElement 
-                            className="address-inputs"
-                            type='input' 
-                            label='Your Address'
-                            value={this.props.shipping.address}
-                            name='address'
-                            onChange={this.handleChange}
-                        />
-                        <div className='ship-dropdowns'>
-                            <FormElement 
-                                type='input' 
-                                label='Zip Code'
-                                value={this.props.shipping.zip}
-                                className='zip'
-                                labelClass='zip-label'
-                                name='zip'
-                                onChange={this.handleChange}
-                            />
-                            <FormElement 
-                                type='select' 
-                                label='Country' 
-                                value={this.props.shipping.country}
-                                array={countryArray}
-                                className='dropdowns'
-                                labelClass='drop-label'
-                                name='country'
-                                onChange={this.handleChange}
-                            />
-                            <FormElement 
-                                type='select' 
-                                label='City'
-                                value={this.props.shipping.city}
-                                array={cityArray}
-                                className='dropdowns'
-                                labelClass='drop-label'
-                                name='city'
-                                onChange={this.handleChange}
-                            />
-                            <FormElement 
-                                type='select' 
-                                label='State'
-                                value={this.props.shipping.state}
-                                array={stateArray}
-                                className='dropdowns'
-                                labelClass='drop-label'
-                                name='state'
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='phone-input'>
-                            <div className='area-code'>
-                                <FormElement 
-                                    type='input' 
-                                    label='Cell Phone' 
-                                    placeholder='0'
-                                    className='country-code'
-                                    name='cell-country-code'
-                                    onChange={this.handleChange}
-                                />
-                                <FormElement 
-                                    type='input'
-                                    className='area'
-                                    labelClass='none'
-                                    name='cell-area-code'
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-                            <FormElement 
-                                type='input' labelClass='none'
-                                className='phone-num-input'
-                                name='cell-number'
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                        <div className='phone-input'>
-                            <div className='area-code'>
-                                <FormElement 
-                                    type='input' 
-                                    label='Telephone'
-                                    placeholder='0'
-                                    className='country-code'
-                                    name='tele-country-code'
-                                    onChange={this.handleChange}
-                                />
-                                <FormElement 
-                                    type='input'
-                                    className='area'
-                                    labelClass='none'
-                                    name='tele-area-code'
-                                    onChange={this.handleChange}
-                                />
-                            </div>
-                            <FormElement 
-                                type='input' labelClass='none'
-                                className='phone-num-input'
-                                name='tele-number'
-                                onChange={this.handleChange}
-                            />
-                        </div>
-                    </form>
-                <hr/>
-                <div>
-                    <div className= 'header'>
                         <div className='titles'>Shipping Method</div>
                     </div>
                     <div className='flex-wrapper'>
@@ -171,7 +123,7 @@ class Shipping extends React.Component {
                             Delivery in 4-6 Business Days - Free ($40 min)
                         </span>
                     </div>
-                    
+                   
                     <div className='flex-wrapper'>
                         <FormElement 
                             type='radio' 
@@ -186,19 +138,172 @@ class Shipping extends React.Component {
                             Delivery in 1-3 Business Days - $5.00
                         </span>
                     </div>
+                    <hr style={{margin:'2rem 0'}} />
+                <div className= 'header'>
+                    <div className='titles'>Shipping Information</div>
+                </div>
+                    <form className='form-temp'>
+                        <FormElement 
+                            className="name-inputs"
+                            type='input' 
+                            label='Address Title'
+                            value={this.props.shipping.title}
+                            name='title'
+                            onChange={this.handleChange}
+                            errorM={this.state.error.title}
+                            onBlur={this.checkForValue}
+                        />
+                        <FormElement 
+                            className="name-inputs"
+                            type='input' 
+                            label='Name - Surname'
+                            value={this.props.shipping.surName}
+                            name='surName'
+                            onChange={this.handleChange}
+                            errorM={this.state.error.surName}
+                            onBlur={this.checkForValue}
+                        />
+                        <FormElement 
+                            className="address-inputs"
+                            type='input' 
+                            label='Your Address'
+                            value={this.props.shipping.address}
+                            name='address'
+                            onChange={this.handleChange}
+                            errorM={this.state.error.address}
+                            onBlur={this.checkForValue}
+                        />
+                        <FormElement 
+                            type='input-num' 
+                            label='Zip Code'
+                            value={this.props.shipping.zip}
+                            className='zip'
+                            labelClass='zip-label'
+                            name='zip'
+                            onChange={this.handleChange}
+                            errorM={this.state.error.zip}
+                            onBlur={this.checkForValue}
+                        />
+                        <div className='ship-dropdowns'>
+                            <FormElement 
+                                type='select' 
+                                label='Country' 
+                                value={this.props.shipping.country}
+                                array={countryArray}
+                                className='dropdowns'
+                                labelClass='drop-label'
+                                name='country'
+                                onChange={this.handleChange}
+                                errorM={this.state.error.country}
+                                onBlur={this.checkForValue}
+                            />
+                            <FormElement 
+                                type='select' 
+                                label='City'
+                                value={this.props.shipping.city}
+                                array={cityArray}
+                                className='dropdowns'
+                                labelClass='drop-label'
+                                name='city'
+                                onChange={this.handleChange}
+                                errorM={this.state.error.city}
+                                onBlur={this.checkForValue}
+                            />
+                            <FormElement 
+                                type='select' 
+                                label='State'
+                                value={this.props.shipping.state}
+                                array={stateArray}
+                                className='dropdowns'
+                                labelClass='drop-label'
+                                name='state'
+                                onChange={this.handleChange}
+                                errorM={this.state.error.state}
+                                onBlur={this.checkForValue}
+                            />
+                        </div>
+                        <div className='phone-input'>
+                            <div className='area-code'>
+                                <FormElement 
+                                    type='input-num' 
+                                    label='Cell Phone' 
+                                    placeholder='0'
+                                    value={this.state.formValues.cellCountryCode}
+                                    className='country-code'
+                                    name='cellCountryCode'
+                                    onChange={this.handleChange}
+                                    onBlur={this.checkForValue}
+                                />
+                                <FormElement 
+                                    type='input-num'
+                                    className='area'
+                                    value={this.state.formValues.cellAreaCode}
+                                    labelClass='none'
+                                    name='cellAreaCode'
+                                    onChange={this.handleChange}
+                                    onBlur={this.checkForValue}
+                                />
+                            </div>
+                            <FormElement 
+                                type='input-num' labelClass='none'
+                                className='phone-num-input'
+                                name='cellNumber'
+                                value={this.state.formValues.cellNumber}
+                                onChange={this.handleChange}
+                                errorM={this.state.error.cellNumber}
+                                onBlur={this.checkForValue}
+                                
+                            />
+                        </div>
+                        <div className='phone-input'>
+                            <div className='area-code'>
+                                <FormElement 
+                                    type='input-num' 
+                                    label='Telephone'
+                                    placeholder='0'
+                                    value={this.state.formValues.teleCountryCode}
+                                    className='country-code'
+                                    name='teleCountryCode'
+                                    onChange={this.handleChange}
+                                    onBlur={this.checkForValue}
+                                />
+                                <FormElement 
+                                    type='input-num'
+                                    className='area'
+                                    labelClass='none'
+                                    value={this.state.formValues.teleAreaCode}
+                                    name='teleAreaCode'
+                                    onChange={this.handleChange}
+                                    onBlur={this.checkForValue}
+                                />
+                            </div>
+                            <FormElement 
+                                type='input-num' labelClass='none'
+                                className='phone-num-input'
+                                value={this.state.formValues.teleNumber}
+                                name='teleNumber'
+                                onChange={this.handleChange}
+                                errorM={this.state.error.teleNumber}
+                                onBlur={this.checkForValue}
+                            />
+                        </div>
+                    </form>
+                
+                <div>
+                    
                 <div className='back-button'>
-                <Button 
-                    onClick={this.handleRender}
-                    className='btn clear'
-                    name='Back to Cart'
+                    
+                    <Button 
+                        onClick={this.handleRender}
+                        className='btn clear'
+                        name='Back to Cart'
                     />
+                
+                    </div>
                 </div>
-                </div>
-
             </div>
-
         )
     }
-} 
+}
 
 export default Shipping

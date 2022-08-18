@@ -23,3 +23,8 @@
 .cart-items-sum h3 {
     text-align: left;
 }
+.cart-items-sum .item-img {
+    width: 90%;
+    margin:1rem 0.5rem;
+
+}

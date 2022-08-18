@@ -17,6 +17,12 @@
         height:0;
         position: absolute;
      }
+     .pay-dropdowns .selectErr {
+      position: fixed;
+      font-size: 1rem;
+      left: 439px;
+      top: 435px;
+     }
      .payment .cvv {
         width:100px;
      }

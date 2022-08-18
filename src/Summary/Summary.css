@@ -90,7 +90,7 @@
     font-weight: 600;
 }
 
-.ship-type h4 {
+.ship-type h4, .payment-sum h4 {
     font-size:1.5rem;
     text-align: left;
     

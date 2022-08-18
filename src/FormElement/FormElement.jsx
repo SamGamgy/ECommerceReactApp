@@ -1,16 +1,14 @@
 import React from "react";
 import './FormElement.css'
 import {AiFillEye, AiFillEyeInvisible} from 'react-icons/ai'
+import {CARDICON} from '../constants'
 
 class FormElement extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             passwordHide:true,
-
         } 
-
-        
     }
 
     passwordToggle = (e) => {
@@ -18,7 +16,6 @@ class FormElement extends React.Component {
         if (this.state.passwordHide === true) {
             this.setState({passwordHide:false})
         } else {this.setState({passwordHide:true})}
-        
     }
     
     render () {
@@ -29,13 +26,25 @@ class FormElement extends React.Component {
                 <label className={this.props.labelClass}>{this.props.label}</label>
                 <input 
                     className={this.props.className}
-                    type="text" 
+                    type= {this.props.passwordHide && (this.state.passwordHide ? 'password' : "text")} 
                     value= {this.props.value} 
                     name = {this.props.name} 
                     placeholder = {this.props.placeholder}
                     onBlur={this.props.onBlur}
                     onChange={this.props.onChange}
                 />
+                {this.props.cardType && 
+                <img 
+                    style= {{ 
+                        position: "absolute", 
+                        top:'2px', 
+                        left:'525px', 
+                        width:'50px', 
+                        height:'33px'}}
+                    src={CARDICON[this.props.cardType]} 
+                    alt='card icon'
+                />}
+
                 {this.props.passwordHide && 
                 (this.state.passwordHide ? 
                 <button className='passwordBtn' onClick={this.passwordToggle}> <AiFillEyeInvisible/> </button> : 
@@ -45,8 +54,25 @@ class FormElement extends React.Component {
             </div>
             )
         }
-        else if (this.props.type === 'select'){
+        else if (this.props.type === 'input-num'){
+            return(
+            <div className={"inputs"}>
+                <label className={this.props.labelClass}>{this.props.label}</label>
+                <input 
+                    className={this.props.className}
+                    type= "number" 
+                    value= {this.props.value} 
+                    name = {this.props.name} 
+                    placeholder = {this.props.placeholder}
+                    onBlur={this.props.onBlur}
+                    onChange={this.props.onChange}
+                />
 
+                {this.props.errorM && <div className="error">{this.props.errorM}</div>}
+            </div>
+            )
+        }
+        else if (this.props.type === 'select'){
             return (
             <div className="selector">
                 <label className={this.props.labelClass}>{this.props.label}</label>
@@ -67,13 +93,12 @@ class FormElement extends React.Component {
 
                     ({this.props.array.map((item)=> (
                         <option value={item}>{item}</option>
-                    ))})
+                    ))})i
                             
                 </select>
                 {this.props.errorM && <div className="error selectErr">{this.props.errorM}</div>}
             </div>
             )
-            
         }
         else if (this.props.type==='radio') {
             return (
@@ -92,7 +117,6 @@ class FormElement extends React.Component {
                 </div>
             )
         }
-
     }
 }
 

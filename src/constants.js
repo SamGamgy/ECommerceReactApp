@@ -3,7 +3,6 @@ import AMERICAN_EXPRESS_ICON from './assets/amex.png'
 import MASTER_CARD_ICON from './assets/masterCard.png'
 import DISCOVER_ICON from './assets/discover.png'
 
-// regexp for signifying pattern of card info. first num 1-9. /\d/ is 0-9, all seperated into 4number strings, 16 total
 export const OTHERCARDS = [
     /[1-9]/,
     /\d/,
@@ -54,8 +53,6 @@ export const CARD = [
     "DISCOVER"
 ];
 
-
-// store actual image into a variable, so that it is easy to change for re-branding 
 export const CARDICON ={
     VISA: VISA_ICON,
     MASTERCARD: MASTER_CARD_ICON,

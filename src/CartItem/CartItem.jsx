@@ -2,7 +2,6 @@ import React from 'react'
 import './CartItem.css'
 import {ImCross} from 'react-icons/im'
 import Dropdown from '../Dropdown/Dropdown'
-import cartItems from '../data'
 
 class CartItem extends React.Component {
     constructor(props) {
@@ -21,14 +20,8 @@ class CartItem extends React.Component {
         this.setState({itemPrice: (this.props.price * e.target.value).toFixed(2)}) 
 
         let index = this.props.index 
-        // this.props.itemPrice((this.props.price * e.target.value).toFixed(2), index)
         this.props.itemPrice(e.target.value, index)
     }
-
-    // updateCart = () => {
-
-    //     this.props.itemPrice((this.state.itemPrice).toFixed(2))
-    // }
 
     removeItem = () => {
         let index = this.props.index
@@ -71,7 +64,6 @@ class CartItem extends React.Component {
                         />
                     </div>
                     <div className='attribute'>${totalPrice}</div>
-
                 </div>
             )
         }

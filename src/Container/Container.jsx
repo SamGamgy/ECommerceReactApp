@@ -9,7 +9,6 @@ import Confirmation from '../Confirmation/Confirmation'
 import {cartItems} from '../data'
 
 
-
 class Container extends React.Component {
     constructor(props) {
         super(props)
@@ -23,6 +22,7 @@ class Container extends React.Component {
             cartQuantities:{},
             shipInfo:{},
             promoDiscount:0,
+            isMissing:true,
         }
     }
 
@@ -32,10 +32,10 @@ class Container extends React.Component {
     calcTotal = () => {
         if (this.state.shipping === 'express') {
             let total = this.state.adjustedSubtotal - this.state.promoDiscount + 5
-            this.setState({cartTotal:total})
+            this.setState({cartTotal:total.toFixed(2)})
         } else {
             let total = this.state.adjustedSubtotal - this.state.promoDiscount
-            this.setState({cartTotal:total})
+            this.setState({cartTotal:total.toFixed(2)})
         }
     }
     handleScreenChangeRender = (leaveScreen, GoToScreen) => {
@@ -52,85 +52,103 @@ class Container extends React.Component {
     }
     handleQuantity = (cartObject) => {
         let sum=0;
-    
+        let adjCartItems=[]
         let cart = cartObject
         for (const [key,value] of Object.entries(cart)) {
             let itemNum= (key.slice(4,5)-1)
             let cartItem= cartItems[itemNum].price
             let cartItemQuant = cartItem*value
+            adjCartItems.push(cartItemQuant)
             sum = sum + cartItemQuant 
-            console.log(sum)
             }
+        this.setState({cartQuantities: adjCartItems})
         this.setState({adjustedSubtotal:sum.toFixed(2)})
+    }
+    passFormCheck = (boolean) => {
+            this.setState({isMissing:boolean})
     }
     render() {
         return(
             <header className="App-header">
         {/* 1 */}
-        {this.state.logInScreen && <SignUpLogin logIn={this.handleScreenChangeRender}/>}
+        {this.state.logInScreen && 
+            <SignUpLogin logIn={this.handleScreenChangeRender}/>}
         {/* 2 */}
         {this.state.cartScreen &&
-        <div className='cart-screen'>
-            <StatusBar one={true}/>
-            <Cart cartItemQuantity={this.handleQuantity}/>
-            <Summary 
-                one={true}
-                cart={this.handleScreenChangeRender}
-                totals= {this.state.adjustedSubtotal} 
-                promo={this.handleStateInfo}
-                promoDiscount={this.state.promoDiscount}
-            />
-        </div>
+            <div className='cart-screen'>
+                <StatusBar one={true}/>
+                <Cart cartItemQuantity={this.handleQuantity}/>
+                <Summary 
+                    one={true}
+                    cart={this.handleScreenChangeRender}
+                    totals= {this.state.adjustedSubtotal} 
+                    promo={this.handleStateInfo}
+                    promoDiscount={this.state.promoDiscount}
+                    cartCheck={this.state.adjustedSubtotal}
+                />
+            </div>
         }
         {/* 3 */}
         {this.state.shipScreen &&
-         <div className='shipping-screen'>
-             <StatusBar one={true} two={true}/> 
-              <Shipping 
-                ship = {this.handleScreenChangeRender}
-                shippingType = {this.grabShipping}
-                values={this.handleShipInfo}
-                shipping= {this.state.shipInfo}
+            <div className='shipping-screen'>
+                <StatusBar one={true} two={true}/> 
+                <Shipping 
+                    ship = {this.handleScreenChangeRender}
+                    shippingType = {this.grabShipping}
+                    values={this.handleShipInfo}
+                    shipping= {this.state.shipInfo}
+                    isFormFilled={this.passFormCheck}
                 />
-             <Summary 
-                two={true} 
-                ship = {this.handleScreenChangeRender} 
-                shippingType={this.state.shipping}
-                totals= {this.state.adjustedSubtotal}
-                promoDiscount={this.state.promoDiscount}
-                
-            /> 
-        </div> 
-        }
+                <Summary 
+                    two={true} 
+                    cartQuantities= {this.state.cartQuantities}
+                    ship = {this.handleScreenChangeRender} 
+                    shippingType={this.state.shipping}
+                     totals= {this.state.adjustedSubtotal}
+                    promoDiscount={this.state.promoDiscount}
+                    formCheck={this.state.isMissing}
+                    promo={this.handleStateInfo}
+                /> 
+        </div> }
         {/* 4 */}
         {this.state.payScreen &&
-        <div className='payment-screen'>
-            <StatusBar one={true} two={true} three={true}/>
-            <Payment cartTotal= {this.state.cartTotal} back= {this.handleScreenChangeRender} pay={this.handleScreenChangeRender}/>
-            <Summary  
-                three={true}
-                shipType= {this.state.shipping} 
-                pay= {this.handleScreenChangeRender} 
-                shipping= {this.state.shipInfo}
-                totals= {this.state.adjustedSubtotal}
-                promoDiscount={this.state.promoDiscount}
-            />
-        </div>
-        }
+            <div className='payment-screen'>
+                <StatusBar one={true} two={true} three={true}/>
+                <Payment 
+                    cartTotal= {this.state.cartTotal} 
+                    back= {this.handleScreenChangeRender} 
+                    pay={this.handleScreenChangeRender}
+                    promoDiscount={this.state.promoDiscount}
+                    cardType={this.handleStateInfo}
+                    lastFour={this.handleStateInfo}
+                />
+                <Summary  
+                    three={true}
+                    cartQuantities= {this.state.cartQuantities}
+                    shipType= {this.state.shipping} 
+                    pay= {this.handleScreenChangeRender} 
+                    shipping= {this.state.shipInfo}
+                    totals= {this.state.adjustedSubtotal}
+                    promoDiscount={this.state.promoDiscount}
+                    promo={this.handleStateInfo}
+                />
+            </div> }
         {/* 5 */}
         {this.state.confirmScreen && 
-        <div className='confirmation-screen'>
-            <StatusBar one={true} two={true} three={true} four={true}/>
-            <Confirmation confirm={this.handleScreenChangeRender}/>
-            <Summary 
-                four={true} 
-                shipType= {this.state.shipping}
-                totals= {this.state.adjustedSubtotal}
-                promoDiscount={this.state.promoDiscount}
-            />
-        </div>
-        }
-
+            <div className='confirmation-screen'>
+                <StatusBar one={true} two={true} three={true} four={true}/>
+                <Confirmation confirm={this.handleScreenChangeRender}/>
+                <Summary 
+                    four={true} 
+                    shipType= {this.state.shipping}
+                    totals= {this.state.adjustedSubtotal}
+                    cartQuantities= {this.state.cartQuantities}
+                    promoDiscount={this.state.promoDiscount}
+                    promo={this.handleStateInfo}
+                    lastFour={this.state.lastFour}
+                    cardType={this.state.cardType}
+                />
+            </div>}
       </header>
         )
     }

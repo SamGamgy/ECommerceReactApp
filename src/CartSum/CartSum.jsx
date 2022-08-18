@@ -1,17 +1,17 @@
 import React from 'react'
 import { cartItems } from '../data'
-import CartItem from '../CartItem/CartItem'
 import './CartSum.css'
 
 class CartSum extends React.Component {
     constructor() {
         super()
         this.state = {
-
         }
     }
-
     render () {
+
+        let cartQuantities= this.props.cartQuant
+
         return(
             <div className='cart-items-sum'>
                 {cartItems.map((item) => 
@@ -35,7 +35,13 @@ class CartSum extends React.Component {
                         </div>
                     </div>
             
-                    <div className='attribute'>${item.price.toFixed(2)}</div>
+                    {cartQuantities.length > 0 ?
+                    <div className='attribute'>
+                        ${item.price.toFixed(2)} x {(this.props.cartQuant && cartQuantities[cartItems.indexOf(item)] / item.price).toFixed(0)} 
+                        = ${this.props.cartQuant && cartQuantities[cartItems.indexOf(item)]}
+                    </div>
+                        :
+                    <div className='attribute'>${item.price.toFixed(2)} </div>}
 
                 </div>
                 ))}

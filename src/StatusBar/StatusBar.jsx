@@ -57,9 +57,7 @@ class StatusBar extends React.Component {
                         Confirmation
                     </div>
                 </div>
-
             </div>
-
         )
     }
 } 

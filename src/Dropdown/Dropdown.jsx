@@ -6,19 +6,16 @@ class Dropdown extends React.Component {
     constructor(props) {
         super(props) 
         this.state= {
-
         }
     }
     render() {
         
-
         return(
             <div className="selector">
                 <select 
                     onChange={this.props.onChange} 
                     name={this.props.name} 
                     id="">
-
                     <option 
                         value='' 
                         disabled 

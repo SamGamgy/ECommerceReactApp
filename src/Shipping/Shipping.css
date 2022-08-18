@@ -39,11 +39,11 @@ label {
     width:293px;
  }
  .ship-dropdowns .dropdowns {
-    width:60%;
+    width:150px;
  }
  .ship-dropdowns .drop-label {
-    width: 119px;
-    text-align: right;
+    width: 70px;
+    text-align: left;
     padding-right: 1rem;
  }
  .form-temp {
@@ -60,12 +60,14 @@ label {
 .ship-dropdowns{
     display:flex;
     align-items: center;
+    justify-content: space-between;
     gap:1rem;
     margin-bottom: 1rem;
 }
 .ship-dropdowns .selector {
-    width:100%;
+    width:252px;
     display: flex;
+    gap:2rem;
 }
 .form-temp .address-inputs {
     width:500px
@@ -82,6 +84,9 @@ label {
     display:flex;
     align-items: center;
     justify-content: left;
+}
+.inputs .zip {
+    width:100px;
 }
 .area-code{
     display: flex;
@@ -133,4 +138,10 @@ label {
 .back-button .btn.clear{
     position: absolute;
     bottom:0;
+}
+.error.selectErr {
+    position: absolute;
+    font-size: 0.7rem;
+    left:-15px;
+    top:34px;
 }

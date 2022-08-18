@@ -1,15 +1,29 @@
 import React from "react";
 import './Button.css'
 class Button extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-
         };
     }
 
     render() {
+
+        if (this.props.isDisable){ 
         return (
+            
+            <button 
+                style={{background: 'grey'}} 
+                className= {this.props.className}
+                onClick={this.props.onClick}
+                disabled
+            >
+                {this.props.icon}
+                {this.props.name}
+            </button>  
+        )}
+        else {
+            return(
             <button 
                 style={this.props.style} 
                 className= {this.props.className}
@@ -17,8 +31,9 @@ class Button extends React.Component {
             >
                 {this.props.icon}
                 {this.props.name}
-            </button>
-        )
+            </button> 
+            ) 
+        }
     }
 }
 

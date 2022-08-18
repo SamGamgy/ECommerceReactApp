@@ -5,12 +5,21 @@ import FormElement from '../FormElement/FormElement'
 import Button from '../Button/Button'
 import { OTHERCARDS } from '../constants';
 import { cardExpireValidation, cardNumberValidation, onlyTextValidation, securityCodeValidation } from "../validations";
+import PopUp from '../PopUp/PopUp'
+import {cartItems} from '../data'
 
 const INIT_CARD = {
     card:'',
     cardHolder:'',
-    cvv:'',
+    securityCode:'',
+    exp:'',
 }
+
+let total = 0;
+for (const items of cartItems) {
+    total = total + items.price
+}
+
 class Payment extends React.Component {
     constructor() {
         super()
@@ -21,14 +30,12 @@ class Payment extends React.Component {
             month:'',
             year:'',
             maxLength: OTHERCARDS.length,
+            errPopUp:false,
+            baseTotal:total,
         }
     }
 
-    handleChange = (e) => {
-        console.log(e.target.value)
-    }
     handleBlur = (e) => {
-        // capture name and value to pass to another function
         this.handleValidations(e.target.name, e.target.value);
     }
     
@@ -54,10 +61,10 @@ class Payment extends React.Component {
             case 'year':
                 errorText = cardExpireValidation(this.state.cardData.exp);
                 this.setState((prevState) => ({
-                    error: {...prevState.error, expiryError:errorText}
+                    error: {...prevState.error, expError:errorText}
                 }))
                 break;
-            case 'cvv':
+            case 'securityCode':
                 errorText = securityCodeValidation(3, value);
                 this.setState((prevState) => ({
                     error: {...prevState.error, securityCodeError:errorText}
@@ -114,10 +121,16 @@ class Payment extends React.Component {
                 cardData:INIT_CARD,
                 cardType:null,
             })
+            this.props.cardType('cardType', this.state.cardType);
+            let cardLength= this.state.cardData.card.length;
+            this.props.lastFour('lastFour', this.state.cardData.card.slice(cardLength-4));
+            this.props.pay('payScreen', 'confirmScreen');
 
-            this.props.pay('payScreen', 'confirmScreen')
+        } else {this.setState({errPopUp:true})}
+    }
 
-        } else {alert("Please Fix Errors")}
+    closePopUp = () => {
+        this.setState({errPopUp:false})
     }
 
     handleCardInput = (e) => {
@@ -125,10 +138,10 @@ class Payment extends React.Component {
         if (e.target.name === 'card') {
             let mask = e.target.value.split(' ').join('');
             if(mask.length) {
-
+                let limit=19
                 mask= mask.match(new RegExp('.{1,4}', 'g')).join(' ');
 
-                this.setState((prevState) => ({cardData: {...prevState.cardData, [e.target.name]: mask}}
+                this.setState((prevState) => ({cardData: {...prevState.cardData, [e.target.name]: mask.slice(0, limit)}}
                     )) 
             } else {
                 this.setState((prevState) => ({cardData: {...prevState.cardData, [e.target.name]: ''}}
@@ -144,6 +157,8 @@ class Payment extends React.Component {
             this.setState({year: yearTwoDigit}, this.handleExpDateConcat) ;
             }
         }
+        else if(e.target.name === 'securityCode')
+            {this.setState((prevState) => ({cardData: {...prevState.cardData, [e.target.name]: e.target.value.slice(0, 3)}}))}
         else {this.setState((prevState) => ({cardData: {...prevState.cardData, [e.target.name]: e.target.value}}))}
     }
     handleExpDateConcat = () => {
@@ -152,7 +167,7 @@ class Payment extends React.Component {
     }
     render() {
         
-        let cartTotal= `Pay $${this.props.cartTotal}`
+        let cartTotal= `Pay $${this.props.cartTotal ? this.props.cartTotal : (this.state.baseTotal - (this.props.promoDiscount && this.props.promoDiscount))}`
         const {cardData, error} = this.state
 
         return(
@@ -181,6 +196,7 @@ class Payment extends React.Component {
                             onChange={this.handleCardInput}
                             type='input' 
                             label='Card Number'
+                            cardType={this.state.cardType}
                             onBlur={this.handleBlur}
                             errorM={(error && error['cardError'] && error['cardError'].length > 1)
                                 ? error['cardError']
@@ -212,8 +228,8 @@ class Payment extends React.Component {
                                 onChange={this.handleCardInput}
                                 labelClass='drop-label'
                                 onBlur={this.handleBlur}
-                                errorM={(error && error['expiryError'] && error['expiryError'].length > 1)
-                                ? error['expiryError']
+                                errorM={(error && error['expError'] && error['expError'].length > 1)
+                                ? error['expError']
                                 : null}
                             />
                         </div>
@@ -221,9 +237,9 @@ class Payment extends React.Component {
                                 <FormElement 
                                     type='input' 
                                     label='CVV' 
-                                    name='cvv'
+                                    name='securityCode'
                                     error='cvvError'
-                                    value= {this.state.cardData.cvv}
+                                    value= {this.state.cardData.securityCode}
                                     onChange={this.handleCardInput}
                                     className='cvv'
                                     onBlur={this.handleBlur}
@@ -236,7 +252,7 @@ class Payment extends React.Component {
                             <Button 
                                 onClick={this.handlePay}
                                 className='btn pay-total' 
-                                name= {cartTotal}/>
+                                name= {cartTotal > 0 ? cartTotal : 'PAY $'+ this.state.baseTotal}/>
                         </div>
                     </form>
                 <hr/>
@@ -247,6 +263,7 @@ class Payment extends React.Component {
                     className='btn clear sm-text'
                     name='Back to Address'/> 
                 </div>
+                {this.state.errPopUp && <PopUp popUp={this.closePopUp} titleStyle={{color:'rgb(175,0,0)'}} title='Payment Error' message='Please fix any errors before trying to pay'/>}
             </div>
 
         )

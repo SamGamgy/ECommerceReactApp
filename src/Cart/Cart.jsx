@@ -30,7 +30,6 @@ class Cart extends React.Component {
     handleDisplay = (boolean, index) => {
         cartItems[index].inCart = boolean
 
-        // update quantity state to 0
         let cartItem= `item${index + 1}Quantity`
         cartItems[index].inCart === false && 
         this.setState((prevState) => ({cart: {...prevState.cart, [cartItem]: 0}}),this.updateProp)
@@ -61,10 +60,7 @@ class Cart extends React.Component {
                         display={this.handleDisplay}
                     />
                 ))}
-                    
-
             </div>
-
         )
     }
 } 

@@ -1,5 +1,34 @@
 import moment from 'moment'
 
+
+// Sign Up validations
+
+export const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email)
+}
+export const isValidPass = (pass) => {
+    const uppercaseRegExp   = /(?=.*?[A-Z])/;
+    const lowercaseRegExp   = /(?=.*?[a-z])/;
+    const digitsRegExp      = /(?=.*?[0-9])/;
+    const specialCharRegExp = /(?=.*?[#?!@$%^&*-])/;
+    const minLengthRegExp   = /.{8,}/;
+     
+    let errorMsg = false;
+
+    if (!uppercaseRegExp.test(pass)) { errorMsg='At least one Uppercase'} ;
+    if (!lowercaseRegExp.test(pass)) { errorMsg='At least one Lowercase'} ;
+    if (!digitsRegExp.test(pass)) { errorMsg='At least one Number'} ;
+    if (!specialCharRegExp.test(pass)) { errorMsg='At least one Special Character'} ;
+    if (!minLengthRegExp.test(pass)) { errorMsg='At least 8 characters'} ;
+
+    return errorMsg
+}
+export const isValidName = (name) => {
+    return /^([^0-9]*)$/.test(name)
+}
+
+
+// Card Validations
 export const cardNumberValidation = (cardNumber) => {
     const regexPattern ={
         MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,
