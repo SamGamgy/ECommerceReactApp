@@ -1,6 +1,5 @@
 import React from "react";
 import './Dropdown.css'
-import {BiCaretDown} from 'react-icons/bi'
 
 class Dropdown extends React.Component {
     constructor(props) {
