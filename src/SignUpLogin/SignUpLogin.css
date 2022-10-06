@@ -6,6 +6,9 @@
     padding: 2rem 5rem;
 
 }
+.login input {
+    font-size: 1rem;
+}
 .toggle {
     text-align: left;
     display: flex;
@@ -35,4 +38,25 @@ input[type='radio']:checked:before {
 }
 .or p {
     margin:0 1rem;
+}
+.btn.fb-btn:hover {
+    background-color: #4267b2b7;
+    border: 2px solid rgb(66, 103, 178);
+}
+.btn.fb-btn {
+    color: white;
+    background: rgb(66, 103, 178);
+    border: 2px solid white;
+}
+.btn.home-btn {
+    position: absolute;
+    top: 40px;
+    left:40px;
+    color: var(--color-maroon);
+    border: 2px solid var(--color-maroon);
+}
+.btn.home-btn:hover{
+    background-color: var(--color-maroon);
+    color: white;
+    border: 2px solid white;
 }

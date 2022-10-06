@@ -94,6 +94,9 @@ class SignUpLogin extends React.Component {
     nextPage = () => {
         this.props.logIn(`logInScreen`, `cartScreen`)
     }
+    handleButton =(e) => {
+        this.props.handleButton(e.target.id)
+    }
     checkErrorBeforeSave = () => {
         let isError = false;
 
@@ -173,6 +176,14 @@ class SignUpLogin extends React.Component {
         if (this.state.toggle === 'createNew') {
             return (
                 <div className='container login'>
+                    <div>
+                        <Button 
+                            onClick={this.handleButton}
+                            name='Home Screen'
+                            className='btn home-btn'
+                            id='homeBtn'   
+                        />
+                    </div>
                     <div className='toggle' >
                         <FormElement
                             type='radio'
@@ -208,7 +219,7 @@ class SignUpLogin extends React.Component {
                         <Button  
                             onClick= {this.handleAddUser}
                             className='btn' 
-                            name='Save' />
+                            name='Create Account' />
                         <div className='or'>
                             <div className='line'></div>
                             <p>or</p>
@@ -216,10 +227,10 @@ class SignUpLogin extends React.Component {
                         </div>
                         <Button 
                             onClick= {this.openFacebook}
-                            className='btn' 
+                            className='btn fb-btn' 
                             icon={fbBanner} 
-                            name= {'Sign Up with Facebook'}   
-                            style={{background:'#4267B2'}}/>
+                            name= {'Sign Up with Facebook'} 
+                        />  
                     </form>
                     {this.state.fbPopUp && 
                         <PopUp 
@@ -246,6 +257,14 @@ class SignUpLogin extends React.Component {
                             title='User Successfully Created' 
                             message='You can now use your email and password to sign in to your account'
                         />}
+                    <div>
+                        <Button 
+                            onClick={this.handleButton}
+                            name='Home Screen'
+                            className='btn home-btn'
+                            id='homeBtn'   
+                        />
+                    </div>
                     <div className='toggle'>
                         <FormElement
                             type='radio'
@@ -288,17 +307,17 @@ class SignUpLogin extends React.Component {
                         </div>
                         <Button 
                             onClick= {this.openFacebook}
-                            className='btn' 
+                            className='btn fb-btn' 
                             icon={fbBanner} 
-                            name= {'Sign In with Facebook'}   
-                            style={{background:'#4267B2'}}/>
+                            name= {'Sign In with Facebook'}  
+                        /> 
                     </form>
                     {this.state.fbPopUp && 
                         <PopUp 
                             popUp={this.closePopUp} 
                             titleStyle={{color:'rgb(66,103,178)'}} 
                             title='Facebook Integration Error' 
-                            message='Sorry, but the developer has not learned this yet...try again later'
+                            message='There was an error connecting to Facebook, please Sign Up manually'
                         />}
                     {this.state.existingUserPopUp && 
                         <PopUp 

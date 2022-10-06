@@ -1,0 +1,17 @@
+.sort-btn{
+    border: 2px solid gray;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: 0.25rem 2rem;
+    font-size: 1.5rem;
+    transition: 0.3s all ease;
+}
+.sort-btn:hover{
+    cursor: pointer;
+    user-select: none;
+    border: 2px solid white;
+    color: white;
+    background-color: gray;
+}

@@ -58,7 +58,7 @@ input::-webkit-inner-spin-button {
     border:none;
     background-color: transparent;
     position:absolute;
-    top:38px;
+    top:25px;
     right:10px;
 }
 .passwordBtn svg {

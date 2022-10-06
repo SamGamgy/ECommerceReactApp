@@ -1,7 +1,7 @@
 import React from 'react'
 import './CartItem.css'
-import {ImCross} from 'react-icons/im'
-import Dropdown from '../Dropdown/Dropdown'
+import {ImCross, ImDatabase} from 'react-icons/im'
+import QuantitySelector from '../QuantitySelector/QuantitySelector'
 
 class CartItem extends React.Component {
     constructor(props) {
@@ -32,36 +32,26 @@ class CartItem extends React.Component {
 
         let totalPrice = (this.props.price * this.state.quantity).toFixed(2)
 
-
+        const data = this.props.data
         let optionArray= [1, 2, 3, 4, 5, 6, 7, 8, 9];
         return(
             this.state.display &&
                 <div className='cart-item'>
-                    <div className='remove-icon circle' onClick={this.removeItem}>
-                        <ImCross/>
-                    </div>
-                    <div className='item-img'>
-                        <img src={this.props.img} alt={this.props.imgAlt} />
-                    </div>
-                    <div className='item-info'>
-                        <div className='category'>{this.props.sex}</div>
-                        <h3>{this.props.name}</h3>
-                        <div className='sub-info'>
-                            <div className='label-item'>Color:</div>
-                            <div className='attribute'>{this.props.color}</div>
+                    <div className='cart-item-name'>
+                        <div className='remove-icon circle' onClick={this.removeItem}>
+                            <ImCross/>
                         </div>
-                        <div className='sub-info'>
-                            <div className='label-item'>Size:</div>
-                            <div className='attribute'>{this.props.size}</div>
+                        <div className='item-img'>
+                            <img src={data.item.image} alt= ''/>
+                        </div>
+                        <div className='item-info'>
+                            <div className='category'>{data.item.category}</div>
+                            <h3>{data.item.name}</h3>
                         </div>
                     </div>
-                    <div className='attribute'>${this.props.price.toFixed(2)}</div>
+                    <div className='attribute'>${data.item.price}</div>
                     <div className='quantity'>
-                        <Dropdown 
-                            array={optionArray} 
-                            placeholder='1' 
-                            onChange={this.handleChange}
-                        />
+                        <QuantitySelector quantity={data.quantity}/>
                     </div>
                     <div className='attribute'>${totalPrice}</div>
                 </div>

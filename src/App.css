@@ -1,3 +1,14 @@
+:root{
+  --color-beige:#C2A887;
+  --color-yellow:#DFAF5E;
+  --color-sage:#61714D;
+  --color-mute-blue:#8FAE93;
+  --color-maroon:#6D152B;
+  --color-light-brown:#BC7444;
+  --color-brown:#592706;
+  --color-green:rgba(65, 172, 65, 0.822)
+}
+
 * {
   box-sizing: border-box;
   margin:0;
@@ -12,12 +23,10 @@
 
 
 .App-header {
-  background-color: #282c34;
+  background-color: #c9c9c9;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  padding-top: 85px;
   font-size: calc(10px + 2vmin);
   color: white;
 }

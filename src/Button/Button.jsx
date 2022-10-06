@@ -13,6 +13,7 @@ class Button extends React.Component {
         return (
             
             <button 
+                id={this.props.id}
                 style={{background: 'grey'}} 
                 className= {this.props.className}
                 onClick={this.props.onClick}
@@ -25,6 +26,7 @@ class Button extends React.Component {
         else {
             return(
             <button 
+                id={this.props.id}
                 style={this.props.style} 
                 className= {this.props.className}
                 onClick={this.props.onClick}

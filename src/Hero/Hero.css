@@ -1,0 +1,23 @@
+.hero{
+    display: block;
+    width: 100%;
+    height: 600px;
+    text-align: center;
+    margin: auto;
+    background-image: url(../assets/farm-2.jpg);
+    background-position: center;
+    background-size: cover;
+    padding-top: 9rem;
+}
+
+.hero-header{
+    font-size: 8rem;
+    font-weight: 100;
+    letter-spacing: 7px;
+    color: var(--color-maroon);
+}
+.hero-sub-header{
+    color: white;
+    font-weight: 300;
+    letter-spacing: 3px;
+}

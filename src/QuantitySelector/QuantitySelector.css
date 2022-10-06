@@ -1,0 +1,32 @@
+.quantity-elm {
+    display: flex;
+    width: 100px;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid gray;
+    border-radius: 50px;
+    padding: 0.3rem 1rem;
+}
+.quantity-elm input {
+    border:none;
+    width: 40px;
+    text-align: center;
+    padding: 0;
+    font-weight: bold;
+    color: var(--color-green);
+    background: transparent;
+}
+.quantity-elm input:focus {
+    outline: none;
+}
+.quantity-icon{
+    color: gray;
+    size: 1rem;
+    transition: all 0.15s ease-in-out;
+}
+.quantity-icon:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    color: black;
+}

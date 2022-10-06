@@ -7,13 +7,15 @@ import Shipping from '../Shipping/Shipping';
 import Payment from '../Payment/Payment'
 import Confirmation from '../Confirmation/Confirmation'
 import {cartItems} from '../data'
+import HomeScreen from '../HomeScreen/HomeScreen'
 
 
 class Container extends React.Component {
     constructor(props) {
         super(props)
         this.state={
-            logInScreen:true,
+            homeScreen:true,
+            logInScreen:false,
             cartScreen:false,
             shipScreen:false,
             payScreen:false,
@@ -67,12 +69,22 @@ class Container extends React.Component {
     passFormCheck = (boolean) => {
             this.setState({isMissing:boolean})
     }
+    handleButton=(btn)=>{
+        btn ==='logInBtn' &&
+        this.setState({homeScreen:false, logInScreen:true})
+        btn === 'cartBtn' &&
+        this.setState({homeScreen:false, cartScreen:true})
+        btn === 'homeBtn' &&
+        this.setState({homeScreen:true, logInScreen:false})
+    }
     render() {
         return(
             <header className="App-header">
+        {this.state.homeScreen && 
+            <HomeScreen handleButton={this.handleButton}/>}
         {/* 1 */}
         {this.state.logInScreen && 
-            <SignUpLogin logIn={this.handleScreenChangeRender}/>}
+            <SignUpLogin handleButton={this.handleButton} logIn={this.handleScreenChangeRender}/>}
         {/* 2 */}
         {this.state.cartScreen &&
             <div className='cart-screen'>

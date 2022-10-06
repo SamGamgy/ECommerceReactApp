@@ -1,0 +1,14 @@
+.counter {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: white;
+    background-color: #ca1313;
+    position: absolute;
+    right: 60px;
+    top: 5px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 1px solid white;
+    padding-top: 2px;
+}

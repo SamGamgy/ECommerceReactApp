@@ -3,6 +3,13 @@ import AMERICAN_EXPRESS_ICON from './assets/amex.png'
 import MASTER_CARD_ICON from './assets/masterCard.png'
 import DISCOVER_ICON from './assets/discover.png'
 
+
+export const PRODUCTS_URL = 'https://api.chec.io/v1/products?limit=50'
+export const PRODUCTS_API = process.env.REACT_APP_PRODUCTS_API;
+
+
+
+
 export const OTHERCARDS = [
     /[1-9]/,
     /\d/,
