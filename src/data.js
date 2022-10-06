@@ -1,5 +1,5 @@
 import dress from './assets/floraldress.jpg'
-import plain from './assets/Plaindress.jpg'
+import plain from './assets/plaindress.jpg'
 import shirt from './assets/mensShirt.jpg'
 import hat from './assets/coolHat.jpg'
 
