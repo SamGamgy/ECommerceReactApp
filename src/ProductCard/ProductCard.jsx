@@ -33,10 +33,10 @@ class ProductCard extends React.Component {
         
         
         return(
-            <div id={id}>
+            <div>
             {productPage ?
             
-            <div id={id+name} className='product-page'>
+            <div key={id+name} className='product-page'>
                 <div className="product-page-header">
                             <Button onClick={this.backToProducts} className='back-products-btn btn' name='Back to Products'></Button>
                             <p>All Product > {category} > {name}</p>
@@ -54,7 +54,7 @@ class ProductCard extends React.Component {
                                 </div>
                                 <p>{description.slice(3, descriptionFormatted)}</p>
                                 <div className="add-to-cart">
-                                    <QuantitySelector quantityState={this.grabQuantity}/>
+                                    <QuantitySelector quantityState={this.grabQuantity} currentQuantity={this.state.productQuantity}/>
                                     <Button onClick={this.passQuantity} className='btn' name='Add to Cart'></Button>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ class ProductCard extends React.Component {
                             product.category === category)
                             .map((item) => (
                                 
-                        <div id={id + category} className="related-products">
+                        <div key={id + category} className="related-products">
                             <div className="product-header">
                                 <div className="product-img-wrap">
                                     <img  src={item.image} alt="" />
@@ -83,7 +83,7 @@ class ProductCard extends React.Component {
                                         <h3>${item.price}</h3>
                                     </div>
                                     <div className="add-to-cart">
-                                        <QuantitySelector quantityState={this.grabQuantity}/>
+                                        <QuantitySelector quantityState={this.grabQuantity} currentQuantity={this.state.productQuantity}/>
                                         <Button onClick={this.passQuantity} className='btn' name='Add'></Button>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@ class ProductCard extends React.Component {
             
             :
             
-            <div className='product-card'>
+            <div key={id} className='product-card'>
                 <div className="img-wrap-card">
                     <img onClick={this.openProductPage} src={image} alt="" />
                 </div>
@@ -108,7 +108,7 @@ class ProductCard extends React.Component {
                     </div>
                     <p>{description.slice(3, descriptionFormatted)}</p>
                     <div className="add-to-cart">
-                        <QuantitySelector quantityState={this.grabQuantity}/>
+                        <QuantitySelector quantityState={this.grabQuantity} currentQuantity={this.state.productQuantity}/>
                         <Button onClick={this.passQuantity} className='btn' name='Add to Cart'></Button>
                     {successMessage ?
                     <div className="success-message">Successfully added to your Cart</div>

@@ -25,7 +25,7 @@ class Cart extends React.Component {
         this.setState((prevState) => ({cart: {...prevState.cart, [cartItem]: quantity}}), this.updateProp)
     }
     updateProp = () => {
-        this.props.cartItemQuantity(this.state.cart)
+        this.props.cart(this.state.cart)
     }
     handleDisplay = (boolean, index) => {
         cartItems[index].inCart = boolean
@@ -44,20 +44,13 @@ class Cart extends React.Component {
                     <div className='titles'>Total Price</div>
                 </div>
                 <hr/>
-                {cartItems.map((item) => 
-                    item.inCart &&
+                {this.props.cart.map((item) => 
+                    // item.inCart &&
                 (
                     <CartItem 
-                        index={cartItems.indexOf(item)}
-                        img={item.img}
-                        imgAlt={item.imgAlt}
-                        sex={item.sex}
-                        name={item.name}
-                        color={item.color}
-                        size={item.size}
-                        price={item.price}
-                        itemPrice={this.updateTotal}
-                        display={this.handleDisplay}
+                        key={item.item.id} 
+                        newQuant={this.handleNewQuant} 
+                        data={item} 
                     />
                 ))}
             </div>

@@ -10,38 +10,38 @@ class CartSum extends React.Component {
     }
     render () {
 
-        let cartQuantities= this.props.cartQuant
+        let cart= this.props.cart
 
         return(
             <div className='cart-items-sum'>
-                {cartItems.map((item) => 
-                    item.inCart &&
+                {cart.map((item) => 
+                    // item.inCart &&
                 (
                 <div className='cart-item'>
                     
                     <div className='item-img'>
-                        <img src={item.img} alt={item.imgAlt} />
+                        <img src={item.item.image} alt=''/>
                     </div>
                     <div className='item-info'>
-                        <div className='category'>{item.sex}</div>
-                        <h3>{item.name}</h3>
+                        <div className='category'>{item.item.category}</div>
+                        <h3>{item.item.name}</h3>
                         <div className='sub-info'>
                             <div className='label-item'>Color:</div>
-                            <div className='attribute'>{item.color}</div>
+                            <div className='attribute'></div>
                         </div>
                         <div className='sub-info'>
                             <div className='label-item'>Size:</div>
-                            <div className='attribute'>{item.size}</div>
+                            <div className='attribute'></div>
                         </div>
                     </div>
             
-                    {cartQuantities.length > 0 ?
+                    {cart.quantity > 0 ?
                     <div className='attribute'>
-                        ${item.price.toFixed(2)} x {(this.props.cartQuant && cartQuantities[cartItems.indexOf(item)] / item.price).toFixed(0)} 
-                        = ${this.props.cartQuant && cartQuantities[cartItems.indexOf(item)]}
+                        ${item.price} x {(this.props.cart && [cart.indexOf(item)] / item.price)} 
+                        = ${this.props.cart && [cart.indexOf(item)]}
                     </div>
                         :
-                    <div className='attribute'>${item.price.toFixed(2)} </div>}
+                    <div className='attribute'>${item.item.price} </div>}
 
                 </div>
                 ))}

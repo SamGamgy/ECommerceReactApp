@@ -91,7 +91,7 @@ class Summary extends React.Component {
                 {!this.props.four && 
                     <Promo promo={this.grabPromo}/> }
                 {this.props.two || this.props.three || this.props.four? 
-                    <CartSum cartQuant={this.props.cartQuantities} /> 
+                    <CartSum cart={this.props.cart} /> 
                     : null}  
                 <hr />
                 <div className="totals">

@@ -6,7 +6,7 @@ class QuantitySelector extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            quantity:1,
+            // quantity:1,
         }
     };
     handleChange = (e) => {
@@ -24,7 +24,7 @@ class QuantitySelector extends React.Component {
         }
     }
     minusQuant = () => {
-        let currentVal=this.state.quantity
+        let currentVal=this.props.currentQuantity
         let newVal= +currentVal -1;
 
         if (newVal <= 1) { 
@@ -38,7 +38,7 @@ class QuantitySelector extends React.Component {
 
     }
     addQuant = () => {
-        let currentVal=this.state.quantity
+        let currentVal=this.props.currentQuantity
         let newVal= +currentVal +1;
         if (newVal > 99) {
             this.setState({quantity:99})
@@ -50,12 +50,15 @@ class QuantitySelector extends React.Component {
         } 
     }
     render() {
+        // if (this.props.quantity > 1) {
+        //     this.setState({quantity:this.props.quantity})
+        // }
         return(
             <div className="quantity-elm">
                 <FaMinus 
                     onClick={this.minusQuant} className="quantity-icon"/>
                 <input 
-                    value={this.state.quantity} 
+                    value={this.props.currentQuantity ? this.props.currentQuantity : 1} 
                     min='0'
                     max='99'
                     type="number" 

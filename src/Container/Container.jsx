@@ -21,10 +21,11 @@ class Container extends React.Component {
             payScreen:false,
             confirmScreen:false,
             shipping:'',
-            cartQuantities:{},
+            cart:[],
             shipInfo:{},
             promoDiscount:0,
             isMissing:true,
+            userData:'',
         }
     }
 
@@ -51,6 +52,10 @@ class Container extends React.Component {
     }
     handleShipInfo = (name, value) => {
         this.setState((prevState) => ({shipInfo: {...prevState.shipInfo, [name]: value}}))
+    }
+    handleCart = (quantity, data) => {
+        let input = {quantity: quantity, item: data};
+        this.setState((prevState) => ({cart: [...prevState.cart,  input]}))
     }
     handleQuantity = (cartObject) => {
         let sum=0;
@@ -81,15 +86,20 @@ class Container extends React.Component {
         return(
             <header className="App-header">
         {this.state.homeScreen && 
-            <HomeScreen handleButton={this.handleButton}/>}
+            <HomeScreen 
+                openCartScreen={this.handleScreenChangeRender}
+                cartTotal={this.handleCart}
+                userData={this.state.userData} 
+                handleButton={this.handleButton}
+            />}
         {/* 1 */}
         {this.state.logInScreen && 
-            <SignUpLogin handleButton={this.handleButton} logIn={this.handleScreenChangeRender}/>}
+            <SignUpLogin userData= {this.handleStateInfo} handleButton={this.handleButton} logIn={this.handleScreenChangeRender}/>}
         {/* 2 */}
         {this.state.cartScreen &&
             <div className='cart-screen'>
                 <StatusBar one={true}/>
-                <Cart cartItemQuantity={this.handleQuantity}/>
+                <Cart cart={this.state.cart}/>
                 <Summary 
                     one={true}
                     cart={this.handleScreenChangeRender}
@@ -113,7 +123,7 @@ class Container extends React.Component {
                 />
                 <Summary 
                     two={true} 
-                    cartQuantities= {this.state.cartQuantities}
+                    cart= {this.state.cart}
                     ship = {this.handleScreenChangeRender} 
                     shippingType={this.state.shipping}
                      totals= {this.state.adjustedSubtotal}

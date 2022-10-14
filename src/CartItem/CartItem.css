@@ -1,10 +1,10 @@
 .cart-item {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     height: 225px;
-    padding: 0 2rem;
-    gap: 2rem;
+    padding: 0 1rem;
     background: #ffffff;
     color: rgb(34, 34, 34);
     font-size: 1.5rem;
@@ -18,8 +18,10 @@
     width: 30px;
     height: 30px;
     margin-bottom: 0;
-    position: relative;
-    opacity:0.7;
+    opacity: 0.7;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 .cart-item .remove-icon.circle:hover {
     opacity: 1;
@@ -27,23 +29,26 @@
 }
 .cart-item .remove-icon.circle svg{
     width: 50%;
-    height:50%;
-    top:-36%;
-    bottom:0;
-    left:25%;
-    right:0;
+    height: 50%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     position: absolute;
+    margin: auto;
 }
-
+.cart-item-name {
+    padding-top: 2rem;
+    width: 120px;
+}
 .item-img {
-    width: 150px;
-    margin:1rem 0;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin: 0rem 0;
+    object-fit: contain;
 
-}
-.cart-item-name{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
 }
 .item-img img {
     width:100%;
@@ -54,12 +59,17 @@
     justify-content: space-between;
     width: 70%;
 }
+.attribute {
+    min-width:100px
+}
 .category {
     opacity: 0.8;
     font-weight: 200;
+    font-size: 1rem;
     text-align: left;
 }
 .item-info h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     margin-top:0;
     text-align: left;

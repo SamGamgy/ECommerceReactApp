@@ -1,5 +1,6 @@
 .product-card {
     width: 350px;
+    height:480px;
     border-radius: 15px;
     box-shadow: 0px 0px 9px 0px #0000003d;
     z-index: 1;
@@ -31,7 +32,7 @@
 }
 .product-header{
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     margin: 4rem 0;
 }
@@ -96,6 +97,11 @@
     align-items: center;
     justify-content: space-evenly;
     margin-bottom: 1rem;
+    position: absolute;
+    bottom: 0;
+    gap: 2rem;
+    margin: auto;
+    width: 100%;
 }
 .back-products-btn.btn{
     

@@ -23,7 +23,10 @@ handleIconButton = (e) => {
                     <h2>Farm to Table</h2>
                 </div>
                 <div className='nav-btns d-flex'>
-                    <Button id='logInBtn' onClick={this.handleButton} className='log-in-btn btn' name='Log In / Sign Up'/>
+                    {this.props.userData === '' ? 
+                    <Button id='logInBtn' onClick={this.handleButton} className='log-in-btn btn' name='Log In / Sign Up'/> :
+                     `Hello ${this.props.userData.firstName}!`
+                    }  
                 </div>
                 <button id='cartBtn' onClick={this.handleButton} className='cart-icon'>
                     <BsCart onClick={this.handleIconButton}/>

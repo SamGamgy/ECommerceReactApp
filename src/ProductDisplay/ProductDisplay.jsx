@@ -93,7 +93,7 @@ class ProductDisplay extends React.Component {
                             .filter(product => 
                                 product.category === categoryFilter)
                             .map((item) => (
-                                <ProductCard cardQuantity={this.grabQuantity} data={item} related={productData}/>
+                                <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
                             ))
                     
                     : searchValue && categoryFilter === 'All Products' ? 
@@ -103,19 +103,19 @@ class ProductDisplay extends React.Component {
                                 ||
                                 product.description.toLowerCase().includes(searchValue.toLowerCase()))
                             .map((item) => (
-                                <ProductCard cardQuantity={this.grabQuantity} data={item} related={productData}/>
+                                <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
                             ))
                     : categoryFilter === 'All Products' && nameSort === 'abc' ?
                         productData
                             .sort((a, b) => a.name.localeCompare(b.name))
                             .map((item) => (
-                                <ProductCard cardQuantity={this.grabQuantity} data={item} related={productData}/>
+                                <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
                             ))
                     : categoryFilter === 'All Products' && nameSort === 'cba' ?
                         productData
                             .sort((a, b) => b.name.localeCompare(a.name))
                             .map((item) => (
-                                <ProductCard cardQuantity={this.grabQuantity} data={item} related={productData}/>
+                                <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
                             ))
                     : nameSort==='abc' ?
                         productData   
@@ -123,14 +123,14 @@ class ProductDisplay extends React.Component {
                             .filter(product => 
                                 product.category === categoryFilter)  
                             .map((item) => (
-                                <ProductCard cardQuantity={this.grabQuantity} data={item} related={productData}/>
+                                <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
                             ))  
                     : productData   
                             .sort((a, b) => b.name.localeCompare(a.name))
                             .filter(product => 
                                 product.category === categoryFilter)  
                             .map((item) => (
-                                <ProductCard cardQuantity={this.grabQuantity} data={item} related={productData}/>
+                                <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
                             ))  
                     }
 

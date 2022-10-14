@@ -84,15 +84,16 @@ class SignUpLogin extends React.Component {
             let user = userData[i]
             if(user.email === (this.state.signInValues.emailLogIn)) {
                 if (user.password === this.state.signInValues.passwordLogIn) {
-                    this.nextPage()
+                    this.nextPage(i)
                 }  else {
                     this.setState((prevState) => ({logInError: {...prevState.logInError, passwordLogInErr:'Password is not Correct'}}))}
             } else {
                 this.setState((prevState) => ({logInError: {...prevState.logInError, emailLogInErr:'Email is not Registered'}}))}
         }
     }
-    nextPage = () => {
-        this.props.logIn(`logInScreen`, `cartScreen`)
+    nextPage = (i) => {
+        this.props.logIn(`logInScreen`, `homeScreen`)
+        this.props.userData('userData', this.state.userData[i])
     }
     handleButton =(e) => {
         this.props.handleButton(e.target.id)
@@ -237,7 +238,7 @@ class SignUpLogin extends React.Component {
                             popUp={this.closePopUp} 
                             titleStyle={{color:'rgb(66,103,178)'}} 
                             title='Facebook Integration Error' 
-                            message='Sorry, but the developer has not learned this yet...try again later'
+                            message='Sorry, there was an error connecting to Facebook. Please enter information manually'
                         />}
                     {this.state.errorPopUp && 
                         <PopUp 

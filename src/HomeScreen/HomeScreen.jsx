@@ -16,7 +16,6 @@ class HomeScreen extends React.Component {
         }
     }
     handleButton = (id) => {
-        console.log(id)
         if (id==='cartBtn') {this.setState({cartFloat:true,})}
         else if (id === 'cartFloatBtn') { this.setState({cartFloat:false})}
         else {this.props.handleButton(id)}
@@ -28,12 +27,16 @@ class HomeScreen extends React.Component {
 
         cartTotal += quantity
         this.setState({cartTotal:cartTotal})
+        this.props.cartTotal(quantity, data)
+    }
+    openCartScreen = (initial, target) => {
+        this.props.openCartScreen(initial, target)
     }
     render() {
         return (
             <div>
-                {this.state.cartFloat && <CartFloat cartItems={this.state.cart} handleButton={this.handleButton}/>}
-                <NavBar buttonPress={this.handleButton} cartTotal={this.state.cartTotal}/>
+                {this.state.cartFloat && <CartFloat openCartScreen={this.openCartScreen} cartItems={this.state.cart} handleButton={this.handleButton}/>}
+                <NavBar userData={this.props.userData} buttonPress={this.handleButton} cartTotal={this.state.cartTotal}/>
                 <Hero />
                 <ProductDisplay cartQuantityUpdate={this.handleUpdateCart}/>
             </div>
