@@ -125,6 +125,11 @@
 }
 .related-products {
     margin-bottom: 2rem;
+    transition: all 0.3s ease-in-out;
+}
+.related-products:hover {
+    cursor: pointer;
+    transform: scale(1.05);
 }
 .related-products .product-img-wrap img {
     width: 200px;

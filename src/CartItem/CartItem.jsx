@@ -25,9 +25,9 @@ class CartItem extends React.Component {
     }
 
     removeItem = () => {
-        let index = this.props.index
-        this.setState({display:false,})
-        this.props.display(false, index)
+        // let index = this.props.index
+        // this.setState({display:false,})
+        // this.props.display(false, index)
 
         let data = this.props.data.item
         this.props.newQuant(0, data)
@@ -43,7 +43,7 @@ class CartItem extends React.Component {
         const data = this.props.data
         return(
             this.state.display &&
-                <div key={data.item.id} className='cart-item'>
+                <div className='cart-item'>
                         <div className='remove-icon circle' onClick={this.removeItem}>
                             <ImCross/>
                         </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import './Cart.css'
 import CartItem from '../CartItem/CartItem'
 import {cartItems} from '../data'
+import Button from '../Button/Button'
 
 
 
@@ -34,6 +35,9 @@ class Cart extends React.Component {
         cartItems[index].inCart === false && 
         this.setState((prevState) => ({cart: {...prevState.cart, [cartItem]: 0}}),this.updateProp)
     }
+    backToHome = () => {
+        this.props.backToHome('cartScreen', 'homeScreen')
+    }
     render() {
         return(
             <div className='container main'>
@@ -53,6 +57,11 @@ class Cart extends React.Component {
                         data={item} 
                     />
                 ))}
+                <Button 
+                    name='Home Screen' 
+                    className='btn home-btn cart-back-btn'
+                    onClick={this.backToHome}
+                />
             </div>
         )
     }

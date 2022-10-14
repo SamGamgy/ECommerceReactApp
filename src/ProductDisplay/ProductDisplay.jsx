@@ -84,8 +84,9 @@ class ProductDisplay extends React.Component {
                 <div className="product-container">
                     {loading && <div>Loading...</div>}
                     
-                    { searchValue && categoryFilter !== 'All Products' ? 
+                    { searchValue && categoryFilter !== 'All Products' && nameSort === 'abc' ? 
                         productData
+                            .sort((a, b) => a.name.localeCompare(b.name))
                             .filter(product => 
                                 product.name.toLowerCase().includes(searchValue.toLowerCase())
                                 ||
@@ -96,8 +97,32 @@ class ProductDisplay extends React.Component {
                                 <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
                             ))
                     
-                    : searchValue && categoryFilter === 'All Products' ? 
+                    : searchValue && categoryFilter !== 'All Products' && nameSort === 'cba' ? 
                         productData
+                            .sort((a, b) => b.name.localeCompare(a.name))
+                            .filter(product => 
+                                product.name.toLowerCase().includes(searchValue.toLowerCase())
+                                ||
+                                product.description.toLowerCase().includes(searchValue.toLowerCase()))
+                            .filter(product => 
+                                product.category === categoryFilter)
+                            .map((item) => (
+                                <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
+                            ))
+                    
+                    : searchValue && categoryFilter === 'All Products' && nameSort === 'abc' ? 
+                        productData
+                            .sort((a, b) => a.name.localeCompare(b.name))
+                            .filter(product => 
+                                product.name.toLowerCase().includes(searchValue.toLowerCase())
+                                ||
+                                product.description.toLowerCase().includes(searchValue.toLowerCase()))
+                            .map((item) => (
+                                <ProductCard key={item.id} cardQuantity={this.grabQuantity} data={item} related={productData}/>
+                            ))
+                    : searchValue && categoryFilter === 'All Products' && nameSort === 'cba' ? 
+                        productData
+                            .sort((a, b) => b.name.localeCompare(a.name))
                             .filter(product => 
                                 product.name.toLowerCase().includes(searchValue.toLowerCase())
                                 ||

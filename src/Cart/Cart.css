@@ -1,11 +1,11 @@
 .main {
     position: absolute;
-    width:70%;
+    width: 60%;
     bottom: 0;
-    left:0;
-    top:20%;
+    left: 40px;
+    top: 20%;
     background: #ffffff;
-    margin:1rem;
+    margin: 1rem;
     border-radius: 5px;
     overflow-y: scroll;
 }
@@ -35,4 +35,7 @@
 }
 .cart.header div:nth-child(4) {
     flex: 1 2;
+}
+.btn.home-btn.cart-back-btn {
+    bottom: 20px;
 }

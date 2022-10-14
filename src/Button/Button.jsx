@@ -14,7 +14,6 @@ class Button extends React.Component {
             
             <button 
                 id={this.props.id}
-                style={{background: 'grey'}} 
                 className= {this.props.className}
                 onClick={this.props.onClick}
                 disabled

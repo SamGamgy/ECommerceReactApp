@@ -89,6 +89,7 @@ class Container extends React.Component {
             <HomeScreen 
                 openCartScreen={this.handleScreenChangeRender}
                 cartTotal={this.handleCart}
+                loadNewCart={this.handleStateInfo}
                 userData={this.state.userData} 
                 handleButton={this.handleButton}
             />}
@@ -99,7 +100,10 @@ class Container extends React.Component {
         {this.state.cartScreen &&
             <div className='cart-screen'>
                 <StatusBar one={true}/>
-                <Cart cart={this.state.cart}/>
+                <Cart 
+                    cart={this.state.cart}
+                    backToHome={this.handleScreenChangeRender}
+                />
                 <Summary 
                     one={true}
                     cart={this.handleScreenChangeRender}

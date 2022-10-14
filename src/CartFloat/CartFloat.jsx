@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import CartItem from "../CartItem/CartItem";
 import {AiFillCloseCircle} from 'react-icons/ai'
 
+
 class CartFloat extends React.Component {
     constructor(props){
         super(props)
@@ -15,21 +16,31 @@ class CartFloat extends React.Component {
         this.props.handleButton(e.target.parentNode.id)
     }
     handleNewQuant = (newQuant, itemData) => {
-        this.setState({updatedCart:this.props.cartItems})
         this.props.cartItems.map((item) => {
             if (itemData === item.item) {
                 return item.quantity = newQuant
             }
-            else{
-                return ''
-            }
+            else {return ''}
         })
-        
+        let filteredCart = this.props.cartItems.filter(items => {
+            return items.quantity !== 0})
+        this.props.updatedCart(filteredCart)
+        this.setState({updatedCart:filteredCart})
+        this.calcTotal();
     }
     openCartScreen = () => {
         this.props.openCartScreen('homeScreen', 'cartScreen')
     }
+    calcTotal = () => {
+        this.state.updatedCart.map((item)=> {
+            let itemTotal = item.quantity * item.item.price;
+            return itemTotal += cartTotal
+        })
+        this.setState({cartTotal:cartTotal}) 
+        console.log(cartTotal)
+    } 
     render() {
+            
         return(
             <div className="cart-float-container">
                 <div className="cart-float-header">
@@ -52,7 +63,7 @@ class CartFloat extends React.Component {
                         {this.props.cartItems.length > 0 ?
                             this.props.cartItems.map((item) => (
                                 <CartItem 
-                                    key={item.id} 
+                                    key={item.item.id} 
                                     newQuant={this.handleNewQuant} 
                                     data={item} 
                                 />
@@ -60,7 +71,12 @@ class CartFloat extends React.Component {
 
                         : <div className="empty-cart">Your Cart is Empty</div>}
                     </div>
-                    <div className="cart-total">Cart Total:</div>
+                    <div className="cart-total">Cart Total: {this.state.cartTotal}
+                        {/* {this.props.cartItems.map((item) => {
+                            let cartItem = item.quantity * item.item.price
+                            return cartTotal += cartItem
+                        } )} */}
+                    </div>
                     <Button onClick={this.openCartScreen} className='btn checkout-btn'name='Checkout' />
             </div>
         )
