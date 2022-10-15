@@ -4,20 +4,61 @@
     height: 600px;
     text-align: center;
     margin: auto;
-    background-image: url(../assets/farm-2.jpg);
+    /* background-image: url(../assets/farm-slideshow.mp4); */
     background-position: center;
     background-size: cover;
     padding-top: 9rem;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
 }
-
+video {
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 5;
+}
+.video-overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0%;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.329);
+}
 .hero-header{
-    font-size: 8rem;
-    font-weight: 100;
+    position: relative;
+    font-size: 7rem;
+    font-weight: 700;
     letter-spacing: 7px;
-    color: var(--color-maroon);
+    color: #fdfffd;
+    z-index: 20;
+    text-shadow: 0px 0px 20px #0505057d;
+}
+.hero .logo{
+    position: absolute;
+    z-index: 19;
+    height: 500px;
+    width: 500px;
+    align-items: center;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.56;
 }
 .hero-sub-header{
-    color: white;
-    font-weight: 300;
+    position: relative;
+    color: #fff2a2;
+    font-weight: 600;
+    font-size: 3rem;
     letter-spacing: 3px;
+    z-index: 20;
+    text-shadow: 0px 0px 20px #00000099;
 }

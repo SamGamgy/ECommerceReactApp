@@ -20,7 +20,6 @@ handleIconButton = (e) => {
                     <div className='logo'>
                         <GiFarmer size={'80px'}/>
                     </div>
-                    <h2>Farm to Table</h2>
                 </div>
                 <div className='nav-btns d-flex'>
                     {this.props.userData === '' ? 

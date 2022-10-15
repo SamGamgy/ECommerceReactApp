@@ -102,6 +102,7 @@
     gap: 2rem;
     margin: auto;
     width: 100%;
+    margin-bottom: 1rem;
 }
 .back-products-btn.btn{
     
@@ -171,12 +172,15 @@
     font-size: 1rem;
     padding: 0.5rem 0;
     border-radius: 50px;
-    background-color: rgb(99,187,99);
+    background-color: rgba(99, 187, 99, 0.904);
     transition: all 0.3s ease;
-    animation: fade-out 2s 1s ease-out;
+    animation: fade-out 3s;
+    transform: translateY(40px);
 }
 @keyframes fade-out {
-    0% {opacity:1}
-    75%{opacity:0}
-    100%{opacity:0}
+    0% {opacity:0.1; transform: translateY(30px)}
+    5%{opacity:0.5; transform: translateY(0px)}
+    10%{opacity:1; transform: translateY(0px)}
+    85%{opacity:.8; transform: translateY(0px)}
+    100%{opacity:0; transform: translateY(40px)}
 }

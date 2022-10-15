@@ -10,6 +10,7 @@ class CartFloat extends React.Component {
         super(props)
         this.state ={
             updatedCart: [],
+            cartTotalPrice:0,
         }
     }
     handleClick = (e) => {
@@ -32,19 +33,15 @@ class CartFloat extends React.Component {
         this.props.openCartScreen('homeScreen', 'cartScreen')
     }
     calcTotal = () => {
-        this.state.updatedCart.map((item)=> {
-            let itemTotal = item.quantity * item.item.price;
-            return itemTotal += cartTotal
-        })
-        this.setState({cartTotal:cartTotal}) 
-        console.log(cartTotal)
-    } 
+        this.state.updatedCart
+            .map(item=> (item.quantity * item.item.price))
+        }
+    
     render() {
             
         return(
             <div className="cart-float-container">
                 <div className="cart-float-header">
-                    <h3>Your Cart Summary</h3>
                     <button 
                         id='cartFloatBtn'
                         onClick={this.handleClick}
@@ -52,6 +49,7 @@ class CartFloat extends React.Component {
                     >
                         <AiFillCloseCircle id='cartFloatBtn' />
                     </button>
+                    <h3>Your Cart Summary</h3>
                 </div>
                     <div className="cart-item-header">
                         <h4 style={{width:'120px'}}>Item</h4>

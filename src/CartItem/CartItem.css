@@ -13,7 +13,7 @@
     background: #e4e3e3;
 }
 .cart-item .remove-icon.circle {
-    background: gray;
+    background: rgb(190, 18, 18);
     color: #ffffff;
     width: 30px;
     height: 30px;
@@ -22,28 +22,30 @@
     position: absolute;
     top: 10px;
     left: 10px;
+    transition: all 0.3s ease;
 }
 .cart-item .remove-icon.circle:hover {
     opacity: 1;
     cursor: pointer;
 }
 .cart-item .remove-icon.circle svg{
-    width: 50%;
-    height: 50%;
+    width: 15px;
+    height: 15px;
     top: 0;
     bottom: 0;
-    left: 0;
+    left: 0.2px;
     right: 0;
     position: absolute;
-    margin: auto;
+    margin: 7.5px;
+    transition: all 0.3s ease;
 }
 .cart-item-name {
     padding-top: 2rem;
     width: 120px;
 }
 .item-img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     overflow: hidden;
     border-radius: 15px;
     margin: 0rem 0;
@@ -51,8 +53,10 @@
 
 }
 .item-img img {
-    width:100%;
-    border-radius: 5px;
+        border-radius: 5px;
+        object-fit: cover;
+        height: 120px;
+        width: 120px;
 }
 .sub-info {
     display: flex;
@@ -66,19 +70,18 @@
     opacity: 0.8;
     font-weight: 200;
     font-size: 1rem;
-    text-align: left;
+    text-align: right;
 }
 .item-info h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     margin-top: 0;
-    text-align: left;
-    width: 150px;
+    text-align: right;
     overflow: hidden;
     height: 30px;
 }
 .item-info {
-    width: 200px;
+    text-align: right;
 }
 .label-item{
     opacity:0.7;
