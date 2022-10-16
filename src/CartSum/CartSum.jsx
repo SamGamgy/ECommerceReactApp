@@ -1,5 +1,5 @@
 import React from 'react'
-import { cartItems } from '../data'
+// import { cartItems } from '../data'
 import './CartSum.css'
 
 class CartSum extends React.Component {
