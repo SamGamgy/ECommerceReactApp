@@ -22,6 +22,11 @@ The Final Stage is the integration of the first two stages.
 
 This is currently in progress..
 
+ToDo:
+Integrate Duplicate Cart Items into single Cart Item. 
+Fix Styling Bugs in Checkout Forms
+Get Cart Total Calculator working with Cart Items.
+
 
 Stock images from Pexels
 API from Commerce.js
