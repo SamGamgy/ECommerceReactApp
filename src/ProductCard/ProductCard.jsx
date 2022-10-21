@@ -82,7 +82,7 @@ class ProductCard extends React.Component {
                             product.category === newPageData.category && product.name !== newPageData.name)
                             .map((item) => (
                                 
-                        <div key={id + category} onClick={e => this.sendProductData(e,item)}className="related-products">
+                        <div key={item.id + category} onClick={e => this.sendProductData(e,item)}className="related-products">
                             <div className="product-header">
                                 <div className="product-img-wrap">
                                     <img  src={item.image} alt="" />
@@ -138,7 +138,7 @@ class ProductCard extends React.Component {
                             product.category === category && product.name !== name)
                             .map((item) => (
                                 
-                        <div key={id + category} onClick={e => this.sendProductData(e,item)}className="related-products">
+                        <div key={item.id + category + 'related'} onClick={e => this.sendProductData(e,item)}className="related-products">
                             <div className="product-header">
                                 <div className="product-img-wrap">
                                     <img  src={item.image} alt="" />

@@ -57,20 +57,20 @@ class Container extends React.Component {
         let input = {quantity: quantity, item: data};
         this.setState((prevState) => ({cart: [...prevState.cart,  input]}))
     }
-    handleQuantity = (cartObject) => {
-        let sum=0;
-        let adjCartItems=[]
-        let cart = cartObject
-        for (const [key,value] of Object.entries(cart)) {
-            let itemNum= (key.slice(4,5)-1)
-            let cartItem= cartItems[itemNum].price
-            let cartItemQuant = cartItem*value
-            adjCartItems.push(cartItemQuant)
-            sum = sum + cartItemQuant 
-            }
-        this.setState({cartQuantities: adjCartItems})
-        this.setState({adjustedSubtotal:sum.toFixed(2)})
-    }
+    // handleQuantity = (cartObject) => {
+    //     let sum=0;
+    //     let adjCartItems=[]
+    //     let cart = cartObject
+    //     for (const [key,value] of Object.entries(cart)) {
+    //         let itemNum= (key.slice(4,5)-1)
+    //         let cartItem= cartItems[itemNum].price
+    //         let cartItemQuant = cartItem*value
+    //         adjCartItems.push(cartItemQuant)
+    //         sum = sum + cartItemQuant 
+    //         }
+    //     this.setState({cartQuantities: adjCartItems})
+    //     this.setState({adjustedSubtotal:sum.toFixed(2)})
+    // }
     passFormCheck = (boolean) => {
             this.setState({isMissing:boolean})
     }

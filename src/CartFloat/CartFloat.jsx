@@ -61,7 +61,7 @@ class CartFloat extends React.Component {
                         {this.props.cartItems.length > 0 ?
                             this.props.cartItems.map((item) => (
                                 <CartItem 
-                                    key={item.item.id} 
+                                    key={item.item.id + 'inCart'} 
                                     newQuant={this.handleNewQuant} 
                                     data={item} 
                                 />

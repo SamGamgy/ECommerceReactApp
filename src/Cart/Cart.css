@@ -38,4 +38,5 @@
 }
 .btn.home-btn.cart-back-btn {
     bottom: 20px;
+    top:auto;
 }

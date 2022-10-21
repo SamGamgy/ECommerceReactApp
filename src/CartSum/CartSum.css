@@ -26,5 +26,6 @@
 .cart-items-sum .item-img {
     width: 90%;
     margin:1rem 0.5rem;
+    overflow: auto;
 
 }

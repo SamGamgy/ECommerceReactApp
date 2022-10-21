@@ -25,14 +25,6 @@ class CartSum extends React.Component {
                     <div className='item-info'>
                         <div className='category'>{item.item.category}</div>
                         <h3>{item.item.name}</h3>
-                        <div className='sub-info'>
-                            <div className='label-item'>Color:</div>
-                            <div className='attribute'></div>
-                        </div>
-                        <div className='sub-info'>
-                            <div className='label-item'>Size:</div>
-                            <div className='attribute'></div>
-                        </div>
                     </div>
             
                     {cart.quantity > 0 ?

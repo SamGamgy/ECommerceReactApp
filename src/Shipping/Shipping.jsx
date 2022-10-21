@@ -60,14 +60,11 @@ class Shipping extends React.Component {
     }
     checkErr = () => {
         let inputsMissing=false
-        console.log('checkErr Ran')
-        console.log(this.state.formValues)
         Object.keys(this.state.formValues).forEach((val) => {
             if (this.state.formValues[val].length === 0) {
                 inputsMissing = true
             } 
         });
-        console.log(this.state.formValues)
         this.setState({errorsPresent:inputsMissing}, this.passProp(inputsMissing))
         
        
