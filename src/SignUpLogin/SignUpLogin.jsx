@@ -92,8 +92,8 @@ class SignUpLogin extends React.Component {
         }
     }
     nextPage = (i) => {
-        this.props.logIn(`logInScreen`, `homeScreen`)
         this.props.userData('userData', this.state.userData[i])
+        this.props.logIn(`logInScreen`, `homeScreen`)
     }
     handleButton =(e) => {
         this.props.handleButton(e.target.id)
@@ -176,7 +176,7 @@ class SignUpLogin extends React.Component {
 
         if (this.state.toggle === 'createNew') {
             return (
-                <div className='container login'>
+                <div className='container sign-up'>
                     <div>
                         <Button 
                             onClick={this.handleButton}
@@ -286,15 +286,15 @@ class SignUpLogin extends React.Component {
                     <form>
                         {signInData.map((item) => (
                             <FormElement
-                            type={item.type} 
-                            label= {item.label} 
-                            name= {item.name} 
-                            state= {item.state}
-                            value={signInValues[item.name]}
-                            maxLength={item.maxLength}
-                            onChange={this.handleLogInInput}
-                            passwordHide={item.password}
-                            errorM={logInError[`${item.name}Err`]}
+                                type={item.type} 
+                                label= {item.label} 
+                                name= {item.name} 
+                                state= {item.state}
+                                value={signInValues[item.name]}
+                                maxLength={item.maxLength}
+                                onChange={this.handleLogInInput}
+                                passwordHide={item.password}
+                                errorM={logInError[`${item.name}Err`]}
                             />
                         ))}
                         <Button 
@@ -318,7 +318,7 @@ class SignUpLogin extends React.Component {
                             popUp={this.closePopUp} 
                             titleStyle={{color:'rgb(66,103,178)'}} 
                             title='Facebook Integration Error' 
-                            message='There was an error connecting to Facebook, please Sign Up manually'
+                            message='There was an error connecting to Facebook, please Sign In manually'
                         />}
                     {this.state.existingUserPopUp && 
                         <PopUp 

@@ -1,15 +1,15 @@
 .container.pop-up{
     position: absolute;
     left: 0;
-    right:0;
-    top:39%;
-    background: #ffffff;
+    right: 0;
+    top: 41%;
+    background: #ffffffe6;
     color: hsl(0deg 0% 13%);
-    border-radius: 30px;
+    border-radius: 5px;
     box-shadow: -2px 11px 20px 0px;
     padding: 0.5rem;
     width: 506px;
-    z-index: 1;
+    z-index: 100;
 }
 .pop-head {
     display: flex;

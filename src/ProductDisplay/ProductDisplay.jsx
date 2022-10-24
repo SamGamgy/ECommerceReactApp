@@ -70,7 +70,7 @@ class ProductDisplay extends React.Component {
         
     }
     grabQuantity = (quantity, data) => {
-        this.props.cartQuantityUpdate(quantity, data)
+        this.props.cartQuantityUpdate(quantity, data, 'add')
     }
     render () {
         const {loading, productData, categoryFilter, searchValue, nameSort} = this.state

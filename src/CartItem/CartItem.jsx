@@ -25,9 +25,7 @@ class CartItem extends React.Component {
     }
 
     removeItem = () => {
-        // let index = this.props.index
-        // this.setState({display:false,})
-        // this.props.display(false, index)
+        this.setState({display:false,})
 
         let data = this.props.data.item
         this.props.newQuant(0, data)
@@ -45,7 +43,7 @@ class CartItem extends React.Component {
             this.state.display &&
                 <div className='cart-item'>
                         <div className='remove-icon circle' onClick={this.removeItem}>
-                            <ImCross/>
+                            <ImCross />
                         </div>
                     <div className='cart-item-name'>
                         <div className='item-info'>
@@ -58,7 +56,7 @@ class CartItem extends React.Component {
                     </div>
                     <div className='attribute'>${data.item.price}</div>
                     <div className='quantity'>
-                        <QuantitySelector quantityState={this.grabNewQuant} currentQuantity={this.state.newQuant}/>
+                        <QuantitySelector quantityState={this.grabNewQuant} currentQuantity={data.quantity}/>
                     </div>
                     <div className='attribute'>${(data.item.price * data.quantity).toFixed(2)}</div>
                 </div>

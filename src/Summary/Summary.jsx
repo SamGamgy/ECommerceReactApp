@@ -30,19 +30,19 @@ class Summary extends React.Component {
 
     handleRender = () => {
         if(this.props.one) {
-            this.props.cart('cartScreen', 'shipScreen')
+            this.props.handleScreenChange('cartScreen', 'shipScreen')
             this.setState({disabled:true})
         }
         else if(this.props.two) {
-            this.props.ship('shipScreen', 'payScreen')
+            this.props.handleScreenChange('shipScreen', 'payScreen')
             this.setState({disabled:true})
         }
         else if(this.props.three) {
-            this.props.pay('payScreen', 'confirmScreen')
+            this.props.handleScreenChange('payScreen', 'confirmScreen')
             this.setState({disabled:true})
         }   
         if(this.props.four) {
-            this.props.cart('confirmScreen', 'logInScreen')
+            this.props.handleScreenChange('confirmScreen', 'logInScreen')
         }
     }
 

@@ -8,6 +8,7 @@
     color: gray;
     z-index: 50;
     padding: 1.5rem 0 0 1rem;
+    box-shadow: -9px 0px 20px 0px #000000ad;
 }
 .cart-float-header {
     display: flex;
@@ -27,20 +28,24 @@
     width: 100px;
 }
 .cart-item-container{
-    margin: 0 1rem;
+    margin: 1rem;
     height: 65vh;
     overflow-y: scroll;
     background-color: gray;
     border-radius: 15px;
+    box-shadow: -1px 6px 8px 5px #0000004f;
 }
 .cart-item-container .cart-item{
     display: flex;
     justify-content: space-between;
 }
 .cart-total {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
     margin: auto;
     text-align: right;
-    padding-right:2rem;
+    padding-right: 2rem;
 }
 .close-btn {
  border: none;
@@ -55,4 +60,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.checkout-btn {
+    font-size: 2rem;
+    position: absolute;
+    left: 40px;
+    font-weight: 400;
+    bottom: 10px;
+    padding: 0.5rem 5rem;
 }

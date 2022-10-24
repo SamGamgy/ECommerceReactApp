@@ -6,9 +6,12 @@ import Cart from '../Cart/Cart';
 import Shipping from '../Shipping/Shipping';
 import Payment from '../Payment/Payment'
 import Confirmation from '../Confirmation/Confirmation'
-import {cartItems} from '../data'
+// import {cartItems} from '../data'
 import HomeScreen from '../HomeScreen/HomeScreen'
+import PopUp from '../PopUp/PopUp';
 
+// let cartQuant = 0
+// let cartTotal = 0
 
 class Container extends React.Component {
     constructor(props) {
@@ -22,10 +25,13 @@ class Container extends React.Component {
             confirmScreen:false,
             shipping:'',
             cart:[],
+            cartTotalPrice:0,
+            cartTotalItems:0,
             shipInfo:{},
             promoDiscount:0,
             isMissing:true,
             userData:'',
+            logInPopUp:false,
         }
     }
 
@@ -42,7 +48,10 @@ class Container extends React.Component {
         }
     }
     handleScreenChangeRender = (leaveScreen, GoToScreen) => {
-        this.setState({[leaveScreen]:false, [GoToScreen]:true,})
+        if (this.state.userData === '' && GoToScreen === 'cartScreen') {
+            this.setState({[leaveScreen]:false, logInScreen:true, logInPopUp:true})
+        }
+        else {this.setState({[leaveScreen]:false, [GoToScreen]:true,})}
     }
     handleStateInfo = (name, value) => {
         if (name === 'promoDiscount') {
@@ -53,24 +62,72 @@ class Container extends React.Component {
     handleShipInfo = (name, value) => {
         this.setState((prevState) => ({shipInfo: {...prevState.shipInfo, [name]: value}}))
     }
-    handleCart = (quantity, data) => {
-        let input = {quantity: quantity, item: data};
-        this.setState((prevState) => ({cart: [...prevState.cart,  input]}))
+    handleCart = (quantity, data, add) => {
+        let isInCart=false;
+        let cart = this.state.cart;
+
+        cart.map((item) => {
+            if (item.item === data) {
+                return isInCart = true
+            }
+            else {return ''}
+        });
+
+        this.setState((prevState) => {
+            if (isInCart && add === 'add') {
+                cart.map((item) => {
+                    if (item.item === data) {
+                        let index = cart.indexOf(item)
+                        let newCart= Array.from(prevState.cart);
+                        newCart[index].quantity += (quantity/2)
+                        this.setState({cart:newCart})
+                    }
+                    return ''
+                })
+            }
+            else if (isInCart) {
+                cart.map((item) => {
+                    if (item.item === data) {
+                        let index = cart.indexOf(item)
+                        let newCart= Array.from(prevState.cart)
+                        newCart[index].quantity = quantity 
+                        let filteredCart = newCart.filter(items => 
+                            items.quantity !== 0 
+                        )
+                        return this.setState({cart:filteredCart})
+                    }
+                    else {return ''}
+                })
+            } 
+            else {
+                let input = {quantity: quantity, item: data};
+                return {cart: [...prevState.cart,  input]}
+            }
+        });
+        // cartTotal =+ (quantity * data.price) 
+        // this.setState((prevState) => ({cartTotalPrice: (prevState.cartTotalPrice + cartTotal)}))
+        // this.handleQuantity()
     }
-    // handleQuantity = (cartObject) => {
-    //     let sum=0;
-    //     let adjCartItems=[]
-    //     let cart = cartObject
-    //     for (const [key,value] of Object.entries(cart)) {
-    //         let itemNum= (key.slice(4,5)-1)
-    //         let cartItem= cartItems[itemNum].price
-    //         let cartItemQuant = cartItem*value
-    //         adjCartItems.push(cartItemQuant)
-    //         sum = sum + cartItemQuant 
-    //         }
-    //     this.setState({cartQuantities: adjCartItems})
-    //     this.setState({adjustedSubtotal:sum.toFixed(2)})
+    // getTotals = (prop) => {
+    //     const sum = this.state.cart.reduce((prev, curr, index, array) => prev + curr[prop], 0)
+    //     console.log(curr)
+    //     return sum
     // }
+    handleQuantity = () => {
+        // this.setState({cartTotalItems: this.getTotals('quantity'), cartTotalPrice: this.getTotals('item.price')})
+        // let sum=0;
+        // let adjCartItems=[]
+        // let cart = cartObject
+        // for (const [key,value] of Object.entries(cart)) {
+        //     let itemNum= (key.slice(4,5)-1)
+        //     let cartItem= cartItems[itemNum].price
+        //     let cartItemQuant = cartItem*value
+        //     adjCartItems.push(cartItemQuant)
+        //     sum = sum + cartItemQuant 
+        //     }
+        // this.setState({cartQuantities: adjCartItems})
+        // this.setState({adjustedSubtotal:sum.toFixed(2)})
+    }
     passFormCheck = (boolean) => {
             this.setState({isMissing:boolean})
     }
@@ -85,17 +142,30 @@ class Container extends React.Component {
     render() {
         return(
             <header className="App-header">
+        {this.state.logInPopUp && 
+            <PopUp
+                title='Please Log In'
+                titleStyle={{color: '#349723f0'}}
+                message='You must be logged in, in order to proceed to checkout'
+                popUp={this.handleStateInfo}
+            />}
         {this.state.homeScreen && 
             <HomeScreen 
                 openCartScreen={this.handleScreenChangeRender}
-                cartTotal={this.handleCart}
+                updateCart={this.handleCart}
+                passDownCart={this.state.cart}
+                cartTotal={this.state.cartTotalPrice}
                 loadNewCart={this.handleStateInfo}
                 userData={this.state.userData} 
                 handleButton={this.handleButton}
             />}
         {/* 1 */}
         {this.state.logInScreen && 
-            <SignUpLogin userData= {this.handleStateInfo} handleButton={this.handleButton} logIn={this.handleScreenChangeRender}/>}
+            <SignUpLogin 
+                userData= {this.handleStateInfo} 
+                handleButton={this.handleButton} 
+                logIn={this.handleScreenChangeRender}
+            />}
         {/* 2 */}
         {this.state.cartScreen &&
             <div className='cart-screen'>
@@ -103,10 +173,12 @@ class Container extends React.Component {
                 <Cart 
                     cart={this.state.cart}
                     backToHome={this.handleScreenChangeRender}
+                    updatedCart={this.handleCart}
                 />
                 <Summary 
                     one={true}
-                    cart={this.handleScreenChangeRender}
+                    handleScreenChange={this.handleScreenChangeRender}
+                    cart={this.state.cart}
                     totals= {this.state.adjustedSubtotal} 
                     promo={this.handleStateInfo}
                     promoDiscount={this.state.promoDiscount}

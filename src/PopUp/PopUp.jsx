@@ -10,7 +10,7 @@ class PopUp extends React.Component {
         } 
     }
     handleClick = () => {
-        this.props.popUp(false)
+        this.props.popUp('logInPopUp', false)
     }
 
     render() {

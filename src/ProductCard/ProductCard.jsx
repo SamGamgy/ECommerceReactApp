@@ -17,7 +17,7 @@ class ProductCard extends React.Component {
         this.setState({productPage:true})
     }
     backToProducts = () => {
-        this.setState({productPage:false})
+        this.setState({productPage:false, relatedProductPage:false})
     }
     grabQuantity = (quantity) => {
         this.setState({productQuantity: quantity})

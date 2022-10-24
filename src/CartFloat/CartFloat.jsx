@@ -17,28 +17,27 @@ class CartFloat extends React.Component {
         this.props.handleButton(e.target.parentNode.id)
     }
     handleNewQuant = (newQuant, itemData) => {
-        this.props.cartItems.map((item) => {
-            if (itemData === item.item) {
-                return item.quantity = newQuant
-            }
-            else {return ''}
-        })
-        let filteredCart = this.props.cartItems.filter(items => {
-            return items.quantity !== 0})
-        this.props.updatedCart(filteredCart)
-        this.setState({updatedCart:filteredCart})
-        this.calcTotal();
+        this.props.updatedCart(newQuant, itemData)
     }
     openCartScreen = () => {
         this.props.openCartScreen('homeScreen', 'cartScreen')
     }
-    calcTotal = () => {
-        this.state.updatedCart
-            .map(item=> (item.quantity * item.item.price))
-        }
+    // calcTotal = () => {
+    //     this.setState({cartTotalPrice:0})
+    //     this.props.cartItems
+    //         .map(item => {
+    //             let itemTotal = (item.quantity * item.item.price)
+    //             cartTotal += itemTotal
+    //             return cartTotal
+    //             }
+    //         )
+    //         this.setState({cartTotalPrice:cartTotal})
+    //     }
     
     render() {
-            
+            const {cartItems} = this.props;
+
+            const total = cartItems.reduce((total, cv) => total = total + ((cv.item.price * 1) * cv.quantity), 0)
         return(
             <div className="cart-float-container">
                 <div className="cart-float-header">
@@ -69,13 +68,34 @@ class CartFloat extends React.Component {
 
                         : <div className="empty-cart">Your Cart is Empty</div>}
                     </div>
-                    <div className="cart-total">Cart Total: {this.state.cartTotal}
-                        {/* {this.props.cartItems.map((item) => {
-                            let cartItem = item.quantity * item.item.price
-                            return cartTotal += cartItem
-                        } )} */}
+                    <div className="cart-total">Cart Total: ${total.toFixed(2)}
+                        {/* {this.props.cartItems.length > 0 ? 
+                            this.props.cartItems
+                                .map((item) => {
+                                    // let cartItem = item.quantity * item.item.price
+                                    cartTotal += cartItem
+                                    // this.setState({cartTotalPrice:cartTotal})
+                                    return cartTotal
+                                })
+                                
+                            
+                        :cartTotal */}
+                        
                     </div>
-                    <Button onClick={this.openCartScreen} className='btn checkout-btn'name='Checkout' />
+                    {this.props.cartItems.length > 0 ?
+                        <Button 
+                            onClick={this.openCartScreen} 
+                            className='btn checkout-btn'
+                            name='Checkout' 
+                        />
+                    : 
+                        <Button 
+                            isDisable={true}
+                            onClick={this.openCartScreen} 
+                            className='btn checkout-btn'
+                            name='Checkout' 
+                        />
+                    }
             </div>
         )
     }

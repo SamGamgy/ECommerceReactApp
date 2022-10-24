@@ -14,6 +14,10 @@ handleIconButton = (e) => {
     this.props.buttonPress(e.target.parentNode.id)
 }
     render () {
+
+        const {cart} = this.props;
+        console.log(cart)
+        const total = cart.reduce((total, cv) => total = total + (cv.quantity * 1), 0);
         return (
             <nav className='d-flex justify-content-between align-items-center container-fluid fixed-top '>
                 <div className='brand'>
@@ -30,7 +34,7 @@ handleIconButton = (e) => {
                 <button id='cartBtn' onClick={this.handleButton} className='cart-icon'>
                     <BsCart onClick={this.handleIconButton}/>
                 </button>
-                <CartCounter cartTotal={this.props.cartTotal}/>
+                <CartCounter cartTotal={total}/>
             </nav>
         )
     }

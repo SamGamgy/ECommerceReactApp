@@ -40,7 +40,7 @@
     transition: all 0.3s ease;
 }
 .cart-item-name {
-    padding-top: 2rem;
+    padding-top: 1rem;
     width: 120px;
 }
 .item-img {
@@ -67,19 +67,19 @@
     min-width:100px
 }
 .category {
-    opacity: 0.8;
-    font-weight: 200;
+    opacity: 0.3;
+    font-weight: 500;
     font-size: 1rem;
-    text-align: right;
+    text-align: center;
 }
 .item-info h3 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
     margin-top: 0;
-    text-align: right;
-    overflow: hidden;
+    text-align: center;
     height: 30px;
 }
+
 .item-info {
     text-align: right;
 }
