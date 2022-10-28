@@ -13,7 +13,8 @@
     background: #e4e3e3;
 }
 .cart-item .remove-icon.circle {
-    background: rgb(190, 18, 18);
+    background: none;
+    border: none;
     color: #ffffff;
     width: 30px;
     height: 30px;
@@ -23,17 +24,19 @@
     top: 10px;
     left: 10px;
     transition: all 0.3s ease;
+    z-index: 100;
 }
 .cart-item .remove-icon.circle:hover {
     opacity: 1;
     cursor: pointer;
 }
 .cart-item .remove-icon.circle svg{
-    width: 15px;
-    height: 15px;
-    top: 0;
+    width: 30px;
+    height: 30px;
+    top: -10px;
     bottom: 0;
-    left: 0.2px;
+    left: -10px;
+    color: #b61a1a;
     right: 0;
     position: absolute;
     margin: 7.5px;

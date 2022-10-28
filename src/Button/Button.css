@@ -4,7 +4,7 @@
     color: rgba(65, 172, 65, 0.822);
     border-radius: 50px;
     background: white;
-    border: 2px solid rgba(65, 172, 65, 0.822);
+    border: 3px solid rgba(65, 172, 65, 0.822);
     font-size: 1.2rem;
     padding: 0.5rem 1rem;
     margin: .5rem 0;
@@ -15,7 +15,7 @@
 }
 .btn:hover {
     background-color: rgba(65, 172, 65, 0.822);
-    border: 2px solid white;
+    border: 3px solid white;
     cursor: pointer;
     color: white;
 

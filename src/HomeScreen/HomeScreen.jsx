@@ -3,6 +3,7 @@ import NavBar from '../NavBar/NavBar';
 import Hero from '../Hero/Hero';
 import ProductDisplay from '../ProductDisplay/ProductDisplay';
 import CartFloat from '../CartFloat/CartFloat'
+import Footer from '../Footer/Footer'
 
 
 
@@ -65,6 +66,7 @@ class HomeScreen extends React.Component {
                 <NavBar userData={this.props.userData} buttonPress={this.handleButton} cart={this.props.passDownCart}/>
                 <Hero />
                 <ProductDisplay cartQuantityUpdate={this.handleUpdateCart}/>
+                <Footer></Footer>
             </div>
         )
     }

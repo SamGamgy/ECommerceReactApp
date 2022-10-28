@@ -1,6 +1,6 @@
 import React from 'react'
 import './CartItem.css'
-import {ImCross} from 'react-icons/im'
+import {AiFillCloseCircle} from 'react-icons/ai'
 import QuantitySelector from '../QuantitySelector/QuantitySelector'
 
 class CartItem extends React.Component {
@@ -42,9 +42,9 @@ class CartItem extends React.Component {
         return(
             this.state.display &&
                 <div className='cart-item'>
-                        <div className='remove-icon circle' onClick={this.removeItem}>
-                            <ImCross />
-                        </div>
+                        <button className='remove-icon circle' onClick={this.removeItem}>
+                            <AiFillCloseCircle />
+                        </button>
                     <div className='cart-item-name'>
                         <div className='item-info'>
                             <div className='category'>{data.item.category}</div>

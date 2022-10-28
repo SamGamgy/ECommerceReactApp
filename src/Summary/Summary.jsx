@@ -3,23 +3,15 @@ import './Summary.css'
 import Promo from '../Promo/Promo'
 import Button from '../Button/Button'
 import CartSum from '../CartSum/CartSum'
-import {cartItems} from '../data'
 import PopUp from '../PopUp/PopUp'
 import {CARDICON} from '../constants'
 
-let total = 0;
-for (const items of cartItems) {
-    if (items.inCart) {
-        total = total + items.price}
-}
 
 class Summary extends React.Component {
     constructor(props) {
         super(props)
         this.state= {
             shipping:'',
-            subtotal:total, 
-            cartQuantities:'',
             promo:0,
             disabled:false,
             promoPopUp:false,
@@ -75,12 +67,14 @@ class Summary extends React.Component {
             summaryStyle= {top:'16%', width:'47%'}
             buttonRender='hidden'};
 
+        const {cart} = this.props;
+
+        const total = cart.reduce((total, cv) => total = total + ((cv.item.price * 1) * cv.quantity), 0)
+
         let cardType= this.props.cardType
         let lastFour= this.props.lastFour
-        let cartTotal = this.props.totals ? 
-            `$${this.props.totals - (this.props.promoDiscount ? this.props.promoDiscount : 0) + (this.props.shipType === 'express' ? 5 : 0) }` 
-            : 
-            `$${(this.state.subtotal-(this.props.promoDiscount ? this.props.promoDiscount : 0))}`
+        let cartTotal = 
+            `$${(total - (this.props.promoDiscount ? this.props.promoDiscount : 0) + (this.props.shipType === 'express' ? 5 : 0)).toFixed(2) }` 
 
         return(
             <div style={summaryStyle} className='container summary'>
@@ -97,7 +91,7 @@ class Summary extends React.Component {
                 <div className="totals">
                     <div className='subtotals'>
                         <div className='label'>Cart Subtotal:</div>
-                        <div className='attribute'>{this.props.totals ? `$${this.props.totals}` : `$${this.state.subtotal}`}</div>
+                        <div className='attribute'>${total.toFixed(2)}</div>
                     </div>
                     <div className='subtotals'>
                         <div className='label'>Shipping & Handling:</div>

@@ -26,6 +26,7 @@ class Cart extends React.Component {
         this.props.updatedCart(newQuant, itemData)
     }
     render() {
+        
         return(
             <div className='container main'>
                 <div className= 'cart header'>

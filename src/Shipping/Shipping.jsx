@@ -117,7 +117,7 @@ class Shipping extends React.Component {
                             inputClass='ship-radio'
                         />
                         <span className='ship-info'>
-                            Delivery in 4-6 Business Days - Free ($40 min)
+                            Delivery in 4-6 Business Days - FREE 
                         </span>
                     </div>
                    
@@ -135,7 +135,6 @@ class Shipping extends React.Component {
                             Delivery in 1-3 Business Days - $5.00
                         </span>
                     </div>
-                    <hr style={{margin:'2rem 0'}} />
                 <div className= 'header'>
                     <div className='titles'>Shipping Information</div>
                 </div>
@@ -252,40 +251,7 @@ class Shipping extends React.Component {
                                 
                             />
                         </div>
-                        <div className='phone-input'>
-                            <div className='area-code'>
-                                <FormElement 
-                                    type='input-num' 
-                                    label='Telephone'
-                                    placeholder='0'
-                                    value={this.state.formValues.teleCountryCode}
-                                    className='country-code'
-                                    name='teleCountryCode'
-                                    onChange={this.handleChange}
-                                    onBlur={this.checkForValue}
-                                />
-                                <FormElement 
-                                    type='input-num'
-                                    className='area'
-                                    labelClass='none'
-                                    value={this.state.formValues.teleAreaCode}
-                                    name='teleAreaCode'
-                                    onChange={this.handleChange}
-                                    onBlur={this.checkForValue}
-                                />
-                            </div>
-                            <FormElement 
-                                type='input-num' labelClass='none'
-                                className='phone-num-input'
-                                value={this.state.formValues.teleNumber}
-                                name='teleNumber'
-                                onChange={this.handleChange}
-                                errorM={this.state.error.teleNumber}
-                                onBlur={this.checkForValue}
-                            />
-                        </div>
                     </form>
-                
                 <div>
                     
                 <div className='back-button'>

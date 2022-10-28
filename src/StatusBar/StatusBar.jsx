@@ -16,7 +16,7 @@ class StatusBar extends React.Component {
 
         let confirmScreen={}
         if (this.props.four) {
-            confirmScreen= {width:'98%'}
+            confirmScreen= {width:'98%', top: '7px' , right: '0', left: '0'}
         }
         return(
             <div 

@@ -19,7 +19,7 @@ handleIconButton = (e) => {
         console.log(cart)
         const total = cart.reduce((total, cv) => total = total + (cv.quantity * 1), 0);
         return (
-            <nav className='d-flex justify-content-between align-items-center container-fluid fixed-top '>
+            <nav className='d-flex justify-content-between align-items-center fixed-top '>
                 <div className='brand'>
                     <div className='logo'>
                         <GiFarmer size={'80px'}/>

@@ -12,7 +12,7 @@ class CartCounter extends React.Component {
     render() {
         return(
             <div className="counter">
-                {this.props.cartTotal}
+                {this.props.cartTotal > 99 ? '99+' : this.props.cartTotal}
             </div>
         )
     }

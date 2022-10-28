@@ -1,0 +1,14 @@
+footer {
+    background-color: #a8cea7;;
+    padding: .8rem 8rem;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+footer a{
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+footer div {
+    font-weight: 200;
+}

@@ -1,40 +1,39 @@
-    .pay.header {
-    display: block;
-    color: black;
-    margin: 1.5rem 4.5rem;
-    text-align: left;
-     }
-     .pay-form{
-        height:75%;
-     }
-     .pay-dropdowns {
-        display:flex;
-     }
-     
-    .pay-dropdowns .hidden {
-        visibility: hidden;
-        width:0;
-        height:0;
-        position: absolute;
-     }
-     .pay-dropdowns .selectErr {
-      position: fixed;
-      font-size: 1rem;
-      left: 439px;
-      top: 435px;
-     }
-     .payment .cvv {
-        width:100px;
-     }
-     .selector .dropdowns {
-        /* width: 150px; */
-     }
-     .btn.pay-total {
-        width:250px;
-        display: block;
-        margin-left:200px;
-     }
-     .btn.clear.sm-text{
-        font-size: 1rem;
-     }
-     
+.pay.header {
+display: block;
+color: black;
+margin: 1.5rem 4.5rem;
+text-align: left;
+}
+.pay-form{
+   height:75%;
+}
+.pay-dropdowns {
+   display:flex;
+}
+
+.pay-dropdowns .hidden {
+   visibility: hidden;
+   width:0;
+   height:0;
+   position: absolute;
+}
+.pay-dropdowns .selectErr {
+position: fixed;
+font-size: 1rem;
+left: 439px;
+top: 435px;
+}
+.payment .cvv {
+   width:100px;
+}
+.pay-dropdowns .selector .dropdowns {
+   width: 115px;
+}
+.btn.pay-total {
+   width:250px;
+   display: block;
+   margin-left:200px;
+}
+.btn.clear.sm-text{
+   font-size: 1rem;
+}

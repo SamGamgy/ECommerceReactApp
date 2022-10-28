@@ -167,7 +167,8 @@ class Payment extends React.Component {
     }
     render() {
         
-        let cartTotal= `Pay $${this.props.cartTotal ? this.props.cartTotal : (this.state.baseTotal - (this.props.promoDiscount && this.props.promoDiscount))}`
+        
+        // let cartTotal= `Pay $${this.props.cartTotal ? this.props.cartTotal : (this.state.baseTotal - (this.props.promoDiscount && this.props.promoDiscount))}`
         const {cardData, error} = this.state
 
         return(
@@ -252,7 +253,8 @@ class Payment extends React.Component {
                             <Button 
                                 onClick={this.handlePay}
                                 className='btn pay-total' 
-                                name= {cartTotal > 0 ? cartTotal : 'PAY $'+ this.state.baseTotal}/>
+                                // name= {cartTotal > 0 ? cartTotal : 'PAY $'+ this.state.baseTotal}
+                            />
                         </div>
                     </form>
                 <hr/>

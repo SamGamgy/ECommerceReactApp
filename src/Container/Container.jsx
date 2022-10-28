@@ -80,7 +80,7 @@ class Container extends React.Component {
                         let index = cart.indexOf(item)
                         let newCart= Array.from(prevState.cart);
                         newCart[index].quantity += (quantity/2)
-                        this.setState({cart:newCart})
+                        this.setState({cart:newCart, cartTotal: (newCart.reduce((total, cv) => total = total + ((cv.item.price * 1) * cv.quantity), 0))})
                     }
                     return ''
                 })
@@ -94,16 +94,22 @@ class Container extends React.Component {
                         let filteredCart = newCart.filter(items => 
                             items.quantity !== 0 
                         )
-                        return this.setState({cart:filteredCart})
+                        return this.setState({cart:filteredCart, cartTotal: (filteredCart.reduce((total, cv) => total = total + ((cv.item.price * 1) * cv.quantity), 0))})
                     }
                     else {return ''}
                 })
             } 
             else {
                 let input = {quantity: quantity, item: data};
-                return {cart: [...prevState.cart,  input]}
+                return {cart: [...prevState.cart,  input], cartTotal: (cart.reduce((total, cv) => total = total + ((cv.item.price * 1) * cv.quantity), 0))}
             }
         });
+
+        cart.reduce((total, cv) => total = total + ((cv.item.price * 1) * cv.quantity), 0)
+
+        // let cartTotal = 
+        //     `$${(total - (this.props.promoDiscount ? this.props.promoDiscount : 0) + (this.props.shipType === 'express' ? 5 : 0)).toFixed(2) }`
+        // this.setState({}) 
         // cartTotal =+ (quantity * data.price) 
         // this.setState((prevState) => ({cartTotalPrice: (prevState.cartTotalPrice + cartTotal)}))
         // this.handleQuantity()
@@ -191,7 +197,7 @@ class Container extends React.Component {
             <div className='shipping-screen'>
                 <StatusBar one={true} two={true}/> 
                 <Shipping 
-                    ship = {this.handleScreenChangeRender}
+                    handleScreenChange = {this.handleScreenChangeRender}
                     shippingType = {this.grabShipping}
                     values={this.handleShipInfo}
                     shipping= {this.state.shipInfo}
@@ -200,7 +206,7 @@ class Container extends React.Component {
                 <Summary 
                     two={true} 
                     cart= {this.state.cart}
-                    ship = {this.handleScreenChangeRender} 
+                    handleScreenChange = {this.handleScreenChangeRender} 
                     shippingType={this.state.shipping}
                      totals= {this.state.adjustedSubtotal}
                     promoDiscount={this.state.promoDiscount}
@@ -213,7 +219,7 @@ class Container extends React.Component {
             <div className='payment-screen'>
                 <StatusBar one={true} two={true} three={true}/>
                 <Payment 
-                    cartTotal= {this.state.cartTotal} 
+                    cart= {this.state.cart} 
                     back= {this.handleScreenChangeRender} 
                     pay={this.handleScreenChangeRender}
                     promoDiscount={this.state.promoDiscount}
@@ -222,9 +228,10 @@ class Container extends React.Component {
                 />
                 <Summary  
                     three={true}
-                    cartQuantities= {this.state.cartQuantities}
+                    cart= {this.state.cart}
+                    // cartQuantities= {this.state.cartQuantities}
                     shipType= {this.state.shipping} 
-                    pay= {this.handleScreenChangeRender} 
+                    handleScreenChange= {this.handleScreenChangeRender} 
                     shipping= {this.state.shipInfo}
                     totals= {this.state.adjustedSubtotal}
                     promoDiscount={this.state.promoDiscount}
@@ -238,9 +245,10 @@ class Container extends React.Component {
                 <Confirmation confirm={this.handleScreenChangeRender}/>
                 <Summary 
                     four={true} 
+                    cart= {this.state.cart}
                     shipType= {this.state.shipping}
                     totals= {this.state.adjustedSubtotal}
-                    cartQuantities= {this.state.cartQuantities}
+                    // cartQuantities= {this.state.cartQuantities}
                     promoDiscount={this.state.promoDiscount}
                     promo={this.handleStateInfo}
                     lastFour={this.state.lastFour}
