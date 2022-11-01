@@ -2,6 +2,11 @@ React App for a full E-Commerce Store with five step checkout.
 
 Project was made with create-react-app
 
+Sample Login Credentials
+
+email : 'sample@test.com'
+password: 'password'
+
 First Stage was creating the five step checkout process. This included:
 
   Sign Up/Log In

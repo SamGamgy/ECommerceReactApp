@@ -8,6 +8,8 @@ import {isValidEmail, isValidName, isValidPass} from '../validations'
 
 let userData=[
     
+    {email:'sample@test.com', firstName:'John', lastName:'Doe', password: 'password', zip: '00000'},
+    
 ]
 class SignUpLogin extends React.Component {
     constructor(props) {

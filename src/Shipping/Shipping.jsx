@@ -70,7 +70,7 @@ class Shipping extends React.Component {
         this.props.isFormFilled(boolean)
     }
     handleRender = () => {
-        this.props.ship('shipScreen', 'cartScreen')
+        this.props.handleScreenChange('shipScreen', 'cartScreen')
     }
 
     checkForValue = (e) => {
