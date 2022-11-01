@@ -22,9 +22,6 @@ class Shipping extends React.Component {
                 cellCountryCode:'',
                 cellAreaCode:'',
                 cellNumber:'',
-                teleNumber:'',
-                teleAreaCode:'',
-                teleCountryCode:'',
                 shippingType:'',
             },
             error: {}
@@ -36,17 +33,17 @@ class Shipping extends React.Component {
     }
 
     handleChange = (e) => {
-        if (e.target.name === 'cellCountryCode' || e.target.name ==='teleCountryCode') {
+        if (e.target.name === 'cellCountryCode') {
             const limit = 1;
             this.setState((prevState) => ({formValues: {...prevState.formValues, [e.target.name]:e.target.value.slice(0, limit)}}))
             this.props.values(e.target.name, e.target.value)
         }
-        else if (e.target.name === 'cellAreaCode' || e.target.name ==='teleAreaCode') {
+        else if (e.target.name === 'cellAreaCode') {
             const limit = 3;
             this.setState((prevState) => ({formValues: {...prevState.formValues, [e.target.name]:e.target.value.slice(0, limit)}}))
             this.props.values(e.target.name, e.target.value)
         }
-        else if (e.target.name === 'cellNumber' || e.target.name ==='teleNumber') {
+        else if (e.target.name === 'cellNumber') {
             const limit = 7;
             this.setState((prevState) => ({formValues: {...prevState.formValues, [e.target.name]:e.target.value.slice(0, limit)}}))
             this.props.values(e.target.name, e.target.value)
@@ -84,13 +81,13 @@ class Shipping extends React.Component {
             this.setState((prevState) => ({error: {...prevState.error, [e.target.name]:''}}))
         } 
     }
-        else if( e.target.name === 'teleAreaCode' || e.target.name === 'teleCountryCode') {
-            if (!e.target.value.length > 0) {
-                this.setState((prevState) => ({error: {...prevState.error, teleNumber:'Required'}}))
-        } else {
-            this.setState((prevState) => ({error: {...prevState.error, [e.target.name]:''}}))
-        } 
-    }
+    //     else if( e.target.name === 'teleAreaCode' || e.target.name === 'teleCountryCode') {
+    //         if (!e.target.value.length > 0) {
+    //             this.setState((prevState) => ({error: {...prevState.error, teleNumber:'Required'}}))
+    //     } else {
+    //         this.setState((prevState) => ({error: {...prevState.error, [e.target.name]:''}}))
+    //     } 
+    // }
         else if (!e.target.value.length > 0) {
             this.setState((prevState) => ({error: {...prevState.error, [e.target.name]:'Required'}}))
         } else {

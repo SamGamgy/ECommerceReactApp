@@ -6,7 +6,6 @@ import Button from '../Button/Button'
 import { OTHERCARDS } from '../constants';
 import { cardExpireValidation, cardNumberValidation, onlyTextValidation, securityCodeValidation } from "../validations";
 import PopUp from '../PopUp/PopUp'
-import {cartItems} from '../data'
 
 const INIT_CARD = {
     card:'',
@@ -15,10 +14,6 @@ const INIT_CARD = {
     exp:'',
 }
 
-let total = 0;
-for (const items of cartItems) {
-    total = total + items.price
-}
 
 class Payment extends React.Component {
     constructor() {
@@ -31,7 +26,6 @@ class Payment extends React.Component {
             year:'',
             maxLength: OTHERCARDS.length,
             errPopUp:false,
-            baseTotal:total,
         }
     }
 
@@ -171,6 +165,11 @@ class Payment extends React.Component {
         // let cartTotal= `Pay $${this.props.cartTotal ? this.props.cartTotal : (this.state.baseTotal - (this.props.promoDiscount && this.props.promoDiscount))}`
         const {cardData, error} = this.state
 
+        const {cart} = this.props;
+        const total = cart.reduce((total, cv) => total = total + ((cv.item.price * 1) * cv.quantity), 0)
+        let cartTotal = 
+        `$${(total - (this.props.promoDiscount ? this.props.promoDiscount : 0) + (this.props.shipType === 'express' ? 5 : 0)).toFixed(2) }` 
+
         return(
             <div className='container main'>
                 <div className= 'pay header'>
@@ -253,7 +252,7 @@ class Payment extends React.Component {
                             <Button 
                                 onClick={this.handlePay}
                                 className='btn pay-total' 
-                                // name= {cartTotal > 0 ? cartTotal : 'PAY $'+ this.state.baseTotal}
+                                name= {'PAY' + cartTotal}
                             />
                         </div>
                     </form>

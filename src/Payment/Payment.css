@@ -28,6 +28,7 @@ top: 435px;
 }
 .pay-dropdowns .selector .dropdowns {
    width: 115px;
+   font-size: 1.5rem;
 }
 .btn.pay-total {
    width:250px;

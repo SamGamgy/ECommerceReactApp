@@ -222,6 +222,7 @@ class Container extends React.Component {
                     cart= {this.state.cart} 
                     back= {this.handleScreenChangeRender} 
                     pay={this.handleScreenChangeRender}
+                    shipping= {this.state.shipInfo}
                     promoDiscount={this.state.promoDiscount}
                     cardType={this.handleStateInfo}
                     lastFour={this.handleStateInfo}

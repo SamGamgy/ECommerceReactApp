@@ -74,7 +74,7 @@ class Summary extends React.Component {
         let cardType= this.props.cardType
         let lastFour= this.props.lastFour
         let cartTotal = 
-            `$${(total - (this.props.promoDiscount ? this.props.promoDiscount : 0) + (this.props.shipType === 'express' ? 5 : 0)).toFixed(2) }` 
+            `$${(total - (this.props.promoDiscount ? this.props.promoDiscount : 0) + (this.props.shippingType === 'express' ? 5 : 0)).toFixed(2) }` 
 
         return(
             <div style={summaryStyle} className='container summary'>
@@ -95,7 +95,7 @@ class Summary extends React.Component {
                     </div>
                     <div className='subtotals'>
                         <div className='label'>Shipping & Handling:</div>
-                        <div className='attribute'>{this.props.shipType === 'express' ? '$5.00' : '$0.00'}</div>
+                        <div className='attribute'>{this.props.shippingType === 'express' ? '$5.00' : '$0.00'}</div>
                     </div>
                     <div className='subtotals'>   
                         <div className='label'>Discount:</div>
@@ -117,7 +117,7 @@ class Summary extends React.Component {
                 :null}
                 <hr />
                 <div>
-                    { (payOrConfirmScreen && this.props.shipType === 'standard' ) &&
+                    { (payOrConfirmScreen && this.props.shippingType === 'standard' ) &&
                     
                     <div className='ship-type'>
                         <h4>SHIPMENT METHOD</h4>
@@ -127,7 +127,7 @@ class Summary extends React.Component {
                         </div>
                     </div>
                     }
-                     {(payOrConfirmScreen && this.props.shipType === 'express' ) &&
+                     {(payOrConfirmScreen && this.props.shippingType === 'express' ) &&
                     <div className='ship-type'>
                         <h4>SHIPMENT METHOD</h4>
                         <div className='flex'>
