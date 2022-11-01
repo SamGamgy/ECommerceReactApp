@@ -24,8 +24,6 @@ This is currently in progress..
 
 ToDo:
 
-Integrate cart totals into Summary Component
-Fix Styling in Checkout Forms
 Responsiveness queries
 
 
