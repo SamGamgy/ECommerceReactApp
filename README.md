@@ -2,10 +2,12 @@ React App for a full E-Commerce Store with five step checkout.
 
 Project was made with create-react-app
 
-Sample Login Credentials
+---Sample Login Credentials---
 
 email : 'sample@test.com'
 password: 'password'
+
+
 
 First Stage was creating the five step checkout process. This included:
 
@@ -17,17 +19,21 @@ First Stage was creating the five step checkout process. This included:
   
 All form have error handlers and reg-ex validations for proper form entry.
 
+
+
 The Second Stage was creating the store front. It is a simple UI with natural colors and minimalist styling. 
 
 The store front integrates with an Chec.io API, where the product data is stored. 
 The JSON is fetched, to create each unique product card. 
 The products can be searched by keyword, filtered by categroy, or sorted in alphabetical/ reserve alphabetical order.
 
+
+
 The Final Stage is the integration of the first two stages.
 
-This is currently in progress..
 
-ToDo:
+
+This is currently in progress..
 
 Responsiveness queries
 
